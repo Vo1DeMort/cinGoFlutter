@@ -1,13 +1,9 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../theme/app_colors.dart';
 
 class CineGoWordmark extends StatelessWidget {
-  const CineGoWordmark({
-    super.key,
-    this.fontSize = 21,
-    this.showMark = true,
-  });
+  const CineGoWordmark({super.key, this.fontSize = 21, this.showMark = true});
 
   final double fontSize;
   final bool showMark;
@@ -26,7 +22,7 @@ class CineGoWordmark extends StatelessWidget {
               borderRadius: BorderRadius.circular(fontSize * 0.45),
               boxShadow: [
                 BoxShadow(
-                  color: AppColors.primaryContainer.withOpacity(0.35),
+                  color: AppColors.primaryContainer.withValues(alpha: 0.35),
                   blurRadius: 16,
                   offset: const Offset(0, 4),
                 ),
@@ -45,7 +41,10 @@ class CineGoWordmark extends StatelessWidget {
             children: [
               TextSpan(
                 text: 'Cine',
-                style: TextStyle(color: AppColors.onSurface, fontSize: fontSize),
+                style: TextStyle(
+                  color: AppColors.onSurface,
+                  fontSize: fontSize,
+                ),
               ),
               TextSpan(
                 text: 'Go',

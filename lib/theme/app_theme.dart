@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import 'app_colors.dart';
 
@@ -156,10 +156,7 @@ ThemeData buildCineGoTheme() {
       labelLarge: AppText.labelCaps,
       labelMedium: AppText.labelCaps,
       labelSmall: AppText.labelCaps,
-    ).apply(
-      bodyColor: AppColors.onSurface,
-      displayColor: AppColors.onSurface,
-    ),
+    ).apply(bodyColor: AppColors.onSurface, displayColor: AppColors.onSurface),
     dividerColor: AppColors.white10,
     splashColor: AppColors.white06,
     highlightColor: AppColors.white06,

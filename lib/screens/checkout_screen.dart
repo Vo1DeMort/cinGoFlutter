@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../models/booking.dart';
@@ -74,7 +74,8 @@ class _CheckoutScreenState extends ConsumerState<CheckoutScreen> {
 
   double get _snackTotal => ref.read(appStateProvider).cartTotal;
 
-  double get _subtotal => _tickets + _formatSurcharge + _snackTotal - _perk - _promoDiscount;
+  double get _subtotal =>
+      _tickets + _formatSurcharge + _snackTotal - _perk - _promoDiscount;
 
   double get _walletApplied =>
       ref.read(appStateProvider).walletApplied ? _walletCredit : 0;
@@ -117,7 +118,8 @@ class _CheckoutScreenState extends ConsumerState<CheckoutScreen> {
     final state = ref.read(appStateProvider);
     final booking = Booking(
       id: 'booking-${DateTime.now().millisecondsSinceEpoch}',
-      code: '#CG-${DateTime.now().microsecondsSinceEpoch.toString().substring(7)}',
+      code:
+          '#CG-${DateTime.now().microsecondsSinceEpoch.toString().substring(7)}',
       movie: widget.movie,
       cinema: widget.showtime.cinema,
       auditorium: '${widget.showtime.auditorium} • Screen 1',
@@ -382,7 +384,7 @@ class _CheckoutScreenState extends ConsumerState<CheckoutScreen> {
                   width: 24,
                   height: 24,
                   decoration: BoxDecoration(
-                    color: AppColors.primary.withOpacity(0.14),
+                    color: AppColors.primary.withValues(alpha: 0.14),
                     shape: BoxShape.circle,
                   ),
                   child: const Icon(
@@ -397,7 +399,8 @@ class _CheckoutScreenState extends ConsumerState<CheckoutScreen> {
                     TextSpan(
                       children: [
                         TextSpan(
-                          text: 'Row ${widget.seats.first.substring(0, 1)} • $seats ',
+                          text:
+                              'Row ${widget.seats.first.substring(0, 1)} • $seats ',
                           style: AppText.monoSmall.copyWith(
                             fontSize: 10,
                             fontWeight: FontWeight.w600,
@@ -437,7 +440,7 @@ class _CheckoutScreenState extends ConsumerState<CheckoutScreen> {
           ),
           Container(
             width: double.infinity,
-            color: AppColors.surfaceHigh.withOpacity(0.6),
+            color: AppColors.surfaceHigh.withValues(alpha: 0.6),
             padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
             child: Row(
               children: [
@@ -848,7 +851,7 @@ class _CheckoutScreenState extends ConsumerState<CheckoutScreen> {
             width: 38,
             height: 38,
             decoration: BoxDecoration(
-              color: AppColors.primary.withOpacity(0.14),
+              color: AppColors.primary.withValues(alpha: 0.14),
               shape: BoxShape.circle,
             ),
             child: const Icon(
@@ -1194,15 +1197,15 @@ class _CheckoutScreenState extends ConsumerState<CheckoutScreen> {
     final buttonLabel = _paying
         ? 'Authorizing Secure Payment…'
         : _paymentMethod == 2
-            ? 'Pay \$${_grandTotal.toStringAsFixed(2)} with PayPal'
-            : _paymentMethod == 1
-                ? 'Pay \$${_grandTotal.toStringAsFixed(2)} with •• 4821'
-                : 'Pay \$${_grandTotal.toStringAsFixed(2)} with Apple Pay';
+        ? 'Pay \$${_grandTotal.toStringAsFixed(2)} with PayPal'
+        : _paymentMethod == 1
+        ? 'Pay \$${_grandTotal.toStringAsFixed(2)} with •• 4821'
+        : 'Pay \$${_grandTotal.toStringAsFixed(2)} with Apple Pay';
 
     const subtotalBase = 96.10;
     return Container(
       decoration: BoxDecoration(
-        color: AppColors.surfaceLowest.withOpacity(0.98),
+        color: AppColors.surfaceLowest.withValues(alpha: 0.98),
         border: const Border(top: BorderSide(color: AppColors.white10)),
         boxShadow: const [
           BoxShadow(
@@ -1298,7 +1301,9 @@ class _CheckoutScreenState extends ConsumerState<CheckoutScreen> {
               PrimaryButton(
                 label: buttonLabel,
                 height: 52,
-                icon: _paying ? Icons.hourglass_top_rounded : Icons.lock_rounded,
+                icon: _paying
+                    ? Icons.hourglass_top_rounded
+                    : Icons.lock_rounded,
                 fontSize: 13,
                 onTap: _paying ? null : _pay,
               ),
@@ -1423,7 +1428,9 @@ class _FeeRow extends StatelessWidget {
             label,
             style: AppText.bodySmall.copyWith(
               fontSize: 9,
-              color: highlight ? AppColors.tertiary : AppColors.onSurfaceVariant,
+              color: highlight
+                  ? AppColors.tertiary
+                  : AppColors.onSurfaceVariant,
             ),
           ),
         ),
@@ -1471,7 +1478,7 @@ class _PaymentTile extends StatelessWidget {
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
             color: selected
-                ? AppColors.primaryContainer.withOpacity(0.5)
+                ? AppColors.primaryContainer.withValues(alpha: 0.5)
                 : AppColors.white06,
           ),
         ),

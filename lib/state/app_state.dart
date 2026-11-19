@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_riverpod/legacy.dart';
 
 import '../data/mock_data.dart';
 import '../models/booking.dart';
@@ -184,11 +184,10 @@ class AppState extends ChangeNotifier {
   }
 
   Movie movieById(String id) => MockData.movies.firstWhere(
-        (movie) => movie.id == id,
-        orElse: () => MockData.dune,
-      );
+    (movie) => movie.id == id,
+    orElse: () => MockData.dune,
+  );
 }
-
 
 /// Riverpod source of truth for the user's session, cart and bookings.
 final appStateProvider = ChangeNotifierProvider<AppState>((ref) => AppState());

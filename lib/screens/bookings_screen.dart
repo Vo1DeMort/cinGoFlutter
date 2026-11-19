@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../models/booking.dart';
@@ -37,7 +37,9 @@ class _BookingsScreenState extends ConsumerState<BookingsScreen> {
     return source
         .where(
           (booking) =>
-              booking.movie.title.toLowerCase().contains(_query.toLowerCase()) ||
+              booking.movie.title.toLowerCase().contains(
+                _query.toLowerCase(),
+              ) ||
               booking.code.toLowerCase().contains(_query.toLowerCase()),
         )
         .toList();
@@ -115,10 +117,12 @@ class _BookingsScreenState extends ConsumerState<BookingsScreen> {
                       vertical: 3,
                     ),
                     decoration: BoxDecoration(
-                      color: AppColors.primaryContainer.withOpacity(0.16),
+                      color: AppColors.primaryContainer.withValues(alpha: 0.16),
                       borderRadius: BorderRadius.circular(999),
                       border: Border.all(
-                        color: AppColors.primaryContainer.withOpacity(0.4),
+                        color: AppColors.primaryContainer.withValues(
+                          alpha: 0.4,
+                        ),
                       ),
                     ),
                     child: Text(
@@ -131,7 +135,9 @@ class _BookingsScreenState extends ConsumerState<BookingsScreen> {
                   ),
                   const Spacer(),
                   RoundIconButton(
-                    icon: _searching ? Icons.close_rounded : Icons.search_rounded,
+                    icon: _searching
+                        ? Icons.close_rounded
+                        : Icons.search_rounded,
                     size: 38,
                     background: AppColors.surfaceLow,
                     onTap: () {
@@ -170,7 +176,10 @@ class _BookingsScreenState extends ConsumerState<BookingsScreen> {
               const SizedBox(height: 14),
               SegmentedPills(
                 labels: const ['Upcoming', 'Past History'],
-                counts: [state.upcomingBookings.length, state.pastBookings.length],
+                counts: [
+                  state.upcomingBookings.length,
+                  state.pastBookings.length,
+                ],
                 selectedIndex: _tab,
                 onChanged: (index) => setState(() => _tab = index),
               ),
@@ -422,9 +431,7 @@ class _ActiveTicketCard extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 9),
             decoration: const BoxDecoration(
               color: AppColors.surfaceContainer,
-              borderRadius: BorderRadius.vertical(
-                top: Radius.circular(22),
-              ),
+              borderRadius: BorderRadius.vertical(top: Radius.circular(22)),
             ),
             child: Row(
               children: [
@@ -504,10 +511,14 @@ class _ActiveTicketCard extends StatelessWidget {
                               vertical: 3,
                             ),
                             decoration: BoxDecoration(
-                              color: AppColors.primaryContainer.withOpacity(0.18),
+                              color: AppColors.primaryContainer.withValues(
+                                alpha: 0.18,
+                              ),
                               borderRadius: BorderRadius.circular(999),
                               border: Border.all(
-                                color: AppColors.primaryContainer.withOpacity(0.45),
+                                color: AppColors.primaryContainer.withValues(
+                                  alpha: 0.45,
+                                ),
                               ),
                             ),
                             child: Text(

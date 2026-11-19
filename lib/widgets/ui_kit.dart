@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../theme/app_colors.dart';
 import '../theme/app_theme.dart';
@@ -78,12 +78,12 @@ class PrimaryButton extends StatelessWidget {
           boxShadow: active
               ? [
                   BoxShadow(
-                    color: AppColors.primaryContainer.withOpacity(0.38),
+                    color: AppColors.primaryContainer.withValues(alpha: 0.38),
                     blurRadius: 22,
                     offset: const Offset(0, 8),
                   ),
                   BoxShadow(
-                    color: AppColors.tertiary.withOpacity(0.14),
+                    color: AppColors.tertiary.withValues(alpha: 0.14),
                     blurRadius: 14,
                   ),
                 ]
@@ -225,9 +225,9 @@ class FormatTag extends StatelessWidget {
         vertical: compact ? 3 : 4,
       ),
       decoration: BoxDecoration(
-        color: filled ? color.withOpacity(0.16) : AppColors.surfaceLowest,
+        color: filled ? color.withValues(alpha: 0.16) : AppColors.surfaceLowest,
         borderRadius: BorderRadius.circular(999),
-        border: Border.all(color: color.withOpacity(filled ? 0.5 : 0.42)),
+        border: Border.all(color: color.withValues(alpha: filled ? 0.5 : 0.42)),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
@@ -271,7 +271,7 @@ class RatingPill extends StatelessWidget {
       ),
       decoration: BoxDecoration(
         color: translucent
-            ? AppColors.surfaceLowest.withOpacity(0.55)
+            ? AppColors.surfaceLowest.withValues(alpha: 0.55)
             : AppColors.surfaceLowest,
         borderRadius: BorderRadius.circular(999),
         border: Border.all(color: AppColors.white10),
@@ -394,9 +394,7 @@ class AppCard extends StatelessWidget {
         color: gradient == null ? color : null,
         gradient: gradient,
         borderRadius: BorderRadius.circular(radius),
-        border: Border.all(
-          color: borderColor ?? AppColors.white06,
-        ),
+        border: Border.all(color: borderColor ?? AppColors.white06),
       ),
       child: child,
     );
@@ -448,7 +446,11 @@ class SearchField extends StatelessWidget {
             ),
             child: Row(
               children: [
-                const Icon(Icons.search_rounded, size: 20, color: AppColors.outline),
+                const Icon(
+                  Icons.search_rounded,
+                  size: 20,
+                  color: AppColors.outline,
+                ),
                 const SizedBox(width: 9),
                 Expanded(
                   child: TextField(
@@ -563,7 +565,9 @@ class SegmentedPills extends StatelessWidget {
                   boxShadow: selected
                       ? [
                           BoxShadow(
-                            color: AppColors.primaryContainer.withOpacity(0.4),
+                            color: AppColors.primaryContainer.withValues(
+                              alpha: 0.4,
+                            ),
                             blurRadius: 14,
                             offset: const Offset(0, 4),
                           ),
@@ -581,7 +585,9 @@ class SegmentedPills extends StatelessWidget {
                         style: TextStyle(
                           fontFamily: 'PlusJakartaSans',
                           fontSize: fontSize,
-                          fontWeight: selected ? FontWeight.w700 : FontWeight.w500,
+                          fontWeight: selected
+                              ? FontWeight.w700
+                              : FontWeight.w500,
                           color: selected
                               ? Colors.white
                               : AppColors.onSurfaceVariant,
@@ -597,7 +603,7 @@ class SegmentedPills extends StatelessWidget {
                         ),
                         decoration: BoxDecoration(
                           color: selected
-                              ? Colors.black.withOpacity(0.22)
+                              ? Colors.black.withValues(alpha: 0.22)
                               : AppColors.surfaceHigh,
                           borderRadius: BorderRadius.circular(999),
                         ),
@@ -654,7 +660,7 @@ class FilterChipPill extends StatelessWidget {
           boxShadow: selected
               ? [
                   BoxShadow(
-                    color: AppColors.primaryContainer.withOpacity(0.35),
+                    color: AppColors.primaryContainer.withValues(alpha: 0.35),
                     blurRadius: 12,
                     offset: const Offset(0, 4),
                   ),
@@ -662,7 +668,9 @@ class FilterChipPill extends StatelessWidget {
               : null,
         ),
         child: Text(
-          count == null ? label.toUpperCase() : '${label.toUpperCase()} ($count)',
+          count == null
+              ? label.toUpperCase()
+              : '${label.toUpperCase()} ($count)',
           style: AppText.labelFormat.copyWith(
             color: selected ? Colors.white : AppColors.onSurfaceVariant,
             fontSize: 10,
@@ -733,7 +741,10 @@ class GlowOrb extends StatelessWidget {
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         gradient: RadialGradient(
-          colors: [color.withOpacity(opacity), color.withOpacity(0)],
+          colors: [
+            color.withValues(alpha: opacity),
+            color.withValues(alpha: 0),
+          ],
         ),
       ),
     );

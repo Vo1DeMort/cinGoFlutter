@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../models/movie.dart';
 import '../theme/app_colors.dart';
@@ -53,7 +53,7 @@ class PosterCard extends StatelessWidget {
                         colors: [
                           Colors.transparent,
                           Colors.transparent,
-                          AppColors.surfaceLowest.withOpacity(0.55),
+                          AppColors.surfaceLowest.withValues(alpha: 0.55),
                         ],
                         stops: const [0, 0.62, 1],
                       ),
@@ -68,7 +68,7 @@ class PosterCard extends StatelessWidget {
                         vertical: 2,
                       ),
                       decoration: BoxDecoration(
-                        color: AppColors.surfaceLowest.withOpacity(0.72),
+                        color: AppColors.surfaceLowest.withValues(alpha: 0.72),
                         borderRadius: BorderRadius.circular(5),
                         border: Border.all(color: AppColors.white10),
                       ),
@@ -120,7 +120,7 @@ class PosterCard extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
             style: AppText.bodySmall.copyWith(
               fontSize: 11,
-              color: AppColors.onSurfaceVariant.withOpacity(0.9),
+              color: AppColors.onSurfaceVariant.withValues(alpha: 0.9),
             ),
           ),
           if (showBookButton) ...[
@@ -195,7 +195,7 @@ class BrowseMovieCard extends StatelessWidget {
                       colors: [
                         Colors.transparent,
                         Colors.transparent,
-                        AppColors.surfaceLowest.withOpacity(0.7),
+                        AppColors.surfaceLowest.withValues(alpha: 0.7),
                       ],
                       stops: const [0, 0.7, 1],
                     ),
@@ -220,7 +220,9 @@ class BrowseMovieCard extends StatelessWidget {
                         vertical: 3,
                       ),
                       decoration: BoxDecoration(
-                        color: AppColors.secondaryContainer.withOpacity(0.9),
+                        color: AppColors.secondaryContainer.withValues(
+                          alpha: 0.9,
+                        ),
                         borderRadius: BorderRadius.circular(6),
                       ),
                       child: Text(
@@ -244,7 +246,7 @@ class BrowseMovieCard extends StatelessWidget {
                       color: AppColors.surfaceLowest,
                       borderRadius: BorderRadius.circular(999),
                       border: Border.all(
-                        color: AppColors.tertiary.withOpacity(0.4),
+                        color: AppColors.tertiary.withValues(alpha: 0.4),
                       ),
                     ),
                     child: Text(
@@ -380,7 +382,7 @@ class ComingSoonCard extends StatelessWidget {
                       vertical: 4,
                     ),
                     decoration: BoxDecoration(
-                      color: AppColors.surfaceLowest.withOpacity(0.78),
+                      color: AppColors.surfaceLowest.withValues(alpha: 0.78),
                       borderRadius: BorderRadius.circular(8),
                       border: Border.all(color: AppColors.white10),
                     ),
@@ -414,7 +416,7 @@ class ComingSoonCard extends StatelessWidget {
                       width: 28,
                       height: 28,
                       decoration: BoxDecoration(
-                        color: AppColors.surfaceLowest.withOpacity(0.7),
+                        color: AppColors.surfaceLowest.withValues(alpha: 0.7),
                         shape: BoxShape.circle,
                         border: Border.all(color: AppColors.white10),
                       ),
@@ -445,7 +447,7 @@ class ComingSoonCard extends StatelessWidget {
                         end: Alignment.bottomCenter,
                         colors: [
                           Colors.transparent,
-                          AppColors.surfaceLowest.withOpacity(0.92),
+                          AppColors.surfaceLowest.withValues(alpha: 0.92),
                         ],
                       ),
                     ),
@@ -453,7 +455,7 @@ class ComingSoonCard extends StatelessWidget {
                       movie.genres.first.toUpperCase(),
                       style: AppText.labelCaps.copyWith(
                         fontSize: 8,
-                        color: AppColors.onSurface.withOpacity(0.9),
+                        color: AppColors.onSurface.withValues(alpha: 0.9),
                       ),
                     ),
                   ),

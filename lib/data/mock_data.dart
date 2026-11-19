@@ -8,8 +8,7 @@ abstract final class MockData {
   static const dune = Movie(
     id: 'dune-part-two',
     title: 'Dune: Part Two',
-    synopsis:
-        'Paul Atreides unites with Chani and the Fremen while seeking revenge against the conspirators who destroyed his family. Facing a choice between the love of his life and the fate of the known universe, he endeavors to prevent a terrible future only he can foresee.',
+    synopsis: 'Paul Atreides unites with Chani and the Fremen while seeking revenge against the conspirators who destroyed his family. Facing a choice between the love of his life and the fate of the known universe, he endeavors to prevent a terrible future only he can foresee.',
     director: 'Denis Villeneuve',
     certificate: 'PG-13',
     rating: 9.4,
@@ -48,8 +47,7 @@ abstract final class MockData {
     Movie(
       id: 'challengers',
       title: 'Challengers',
-      synopsis:
-          'Tashi, a tennis player turned coach, has taken her husband, Art, and transformed him into a world-famous grand slam champion. To jolt him out of his recent losing streak, she makes him play a challenger event.',
+      synopsis: 'Tashi, a tennis player turned coach, has taken her husband, Art, and transformed him into a world-famous grand slam champion. To jolt him out of his recent losing streak, she makes him play a challenger event.',
       director: 'Luca Guadagnino',
       certificate: 'R',
       rating: 7.8,
@@ -79,8 +77,7 @@ abstract final class MockData {
     Movie(
       id: 'furiosa',
       title: 'Furiosa: A Mad Max Saga',
-      synopsis:
-          'Snatched from the Green Place of Many Mothers, young Furiosa falls into the hands of a great biker horde led by the warlord Dementus. Sweeping through the wasteland, they come upon the Citadel presided over by Immortan Joe.',
+      synopsis: 'Snatched from the Green Place of Many Mothers, young Furiosa falls into the hands of a great biker horde led by the warlord Dementus. Sweeping through the wasteland, they come upon the Citadel presided over by Immortan Joe.',
       director: 'George Miller',
       certificate: 'R',
       rating: 8.1,
@@ -110,8 +107,7 @@ abstract final class MockData {
     Movie(
       id: 'civil-war',
       title: 'Civil War',
-      synopsis:
-          'In a near-future America, a team of journalists travels across a country torn apart by a rapidly escalating civil war, racing toward Washington D.C. before rebel factions descend upon the White House.',
+      synopsis: 'In a near-future America, a team of journalists travels across a country torn apart by a rapidly escalating civil war, racing toward Washington D.C. before rebel factions descend upon the White House.',
       director: 'Alex Garland',
       certificate: 'R',
       rating: 8.4,
@@ -141,8 +137,7 @@ abstract final class MockData {
     Movie(
       id: 'gladiator-ii',
       title: 'Gladiator II',
-      synopsis:
-          'Years after witnessing the death of the revered hero Maximus at the hands of his uncle, Lucius is forced to enter the Colosseum after his home is conquered by the tyrannical emperors who now lead Rome with an iron fist.',
+      synopsis: 'Years after witnessing the death of the revered hero Maximus at the hands of his uncle, Lucius is forced to enter the Colosseum after his home is conquered by the tyrannical emperors who now lead Rome with an iron fist.',
       director: 'Ridley Scott',
       certificate: 'R',
       rating: 8.2,
@@ -173,8 +168,7 @@ abstract final class MockData {
     Movie(
       id: 'joker-folie-a-deux',
       title: 'Joker: Folie à Deux',
-      synopsis:
-          'Struggling with his dual identity, failed comedian Arthur Fleck meets the love of his life, Harley Quinn, while incarcerated at Arkham State Hospital. Their shared delusion spirals into a musical romance.',
+      synopsis: 'Struggling with his dual identity, failed comedian Arthur Fleck meets the love of his life, Harley Quinn, while incarcerated at Arkham State Hospital. Their shared delusion spirals into a musical romance.',
       director: 'Todd Phillips',
       certificate: 'R',
       rating: 7.6,
@@ -205,8 +199,7 @@ abstract final class MockData {
     Movie(
       id: 'alien-romulus',
       title: 'Alien: Romulus',
-      synopsis:
-          'While scavenging the deep ends of a derelict space station, a group of young space colonizers come face to face with the most terrifying life form in the universe.',
+      synopsis: 'While scavenging the deep ends of a derelict space station, a group of young space colonizers come face to face with the most terrifying life form in the universe.',
       director: 'Fede Álvarez',
       certificate: 'R',
       rating: 7.9,
@@ -219,8 +212,7 @@ abstract final class MockData {
     Movie(
       id: 'kingdom-of-the-planet-of-the-apes',
       title: 'Kingdom of the Planet of the Apes',
-      synopsis:
-          'Many years after the reign of Caesar, a young ape goes on a journey that will lead him to question everything he has been taught about the past and make choices that will define a future for apes and humans alike.',
+      synopsis: 'Many years after the reign of Caesar, a young ape goes on a journey that will lead him to question everything he has been taught about the past and make choices that will define a future for apes and humans alike.',
       director: 'Wes Ball',
       certificate: 'PG-13',
       rating: 8.1,
@@ -233,8 +225,7 @@ abstract final class MockData {
     Movie(
       id: 'deadpool-and-wolverine',
       title: 'Deadpool & Wolverine',
-      synopsis:
-          'Wade Wilson is pulled from his quiet life and drafted into a mission that will change the history of the Marvel Cinematic Universe — alongside a reluctant Wolverine.',
+      synopsis: 'Wade Wilson is pulled from his quiet life and drafted into a mission that will change the history of the Marvel Cinematic Universe — alongside a reluctant Wolverine.',
       director: 'Shawn Levy',
       certificate: 'R',
       rating: 8.6,
@@ -247,8 +238,7 @@ abstract final class MockData {
     Movie(
       id: 'a-quiet-place-day-one',
       title: 'A Quiet Place: Day One',
-      synopsis:
-          'A woman named Sam finds herself trapped in New York City during the early stages of an invasion by alien creatures with ultrasonic hearing.',
+      synopsis: 'A woman named Sam finds herself trapped in New York City during the early stages of an invasion by alien creatures with ultrasonic hearing.',
       director: 'Michael Sarnoski',
       certificate: 'PG-13',
       rating: 7.4,
@@ -261,8 +251,7 @@ abstract final class MockData {
     Movie(
       id: 'oppenheimer',
       title: 'Oppenheimer',
-      synopsis:
-          'The story of American scientist J. Robert Oppenheimer and his role in the development of the atomic bomb, told across the vivid moral landscape of the twentieth century.',
+      synopsis: 'The story of American scientist J. Robert Oppenheimer and his role in the development of the atomic bomb, told across the vivid moral landscape of the twentieth century.',
       director: 'Christopher Nolan',
       certificate: 'R',
       rating: 9.0,
@@ -345,7 +334,8 @@ abstract final class MockData {
     SnackItem(
       id: 'dune-combo',
       name: "Dune: Part Two Collector's Combo",
-      description: '1x Large Truffle Popcorn in commemorative tin, 2x Large Drinks',
+      description:
+          '1x Large Truffle Popcorn in commemorative tin, 2x Large Drinks',
       price: 22.50,
       image: 'assets/images/snack_dune_combo.jpg',
       section: 'Auditorium Exclusives',
@@ -356,7 +346,8 @@ abstract final class MockData {
     SnackItem(
       id: 'lounge-platter',
       name: 'VIP Cinema Lounge Platter',
-      description: 'Wagyu beef sliders (2x), seasoned waffle fries, truffle aioli',
+      description:
+          'Wagyu beef sliders (2x), seasoned waffle fries, truffle aioli',
       price: 26.00,
       image: 'assets/images/snack_lounge_platter.jpg',
       section: 'Auditorium Exclusives',
@@ -450,11 +441,7 @@ abstract final class MockData {
     ),
   ];
 
-  static const snackCategories = [
-    'Combos',
-    'Gourmet Popcorn',
-    'Craft Drinks',
-  ];
+  static const snackCategories = ['Combos', 'Gourmet Popcorn', 'Craft Drinks'];
 
   static List<Booking> initialBookings(List<Movie> movies) {
     final byId = {for (final movie in movies) movie.id: movie};

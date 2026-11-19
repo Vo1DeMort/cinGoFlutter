@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../theme/app_colors.dart';
 import '../theme/app_theme.dart';
@@ -24,7 +24,7 @@ class RootHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: AppColors.surfaceLowest.withOpacity(0.86),
+        color: AppColors.surfaceLowest.withValues(alpha: 0.86),
         border: const Border(
           bottom: BorderSide(color: AppColors.white06, width: 1),
         ),
@@ -159,7 +159,7 @@ class SubPageHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: AppColors.surfaceLowest.withOpacity(0.92),
+        color: AppColors.surfaceLowest.withValues(alpha: 0.92),
         border: const Border(
           bottom: BorderSide(color: AppColors.white06, width: 1),
         ),
@@ -211,7 +211,9 @@ class SubPageHeader extends StatelessWidget {
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style: AppText.bodySmall.copyWith(
-                            color: AppColors.onSurfaceVariant.withOpacity(0.85),
+                            color: AppColors.onSurfaceVariant.withValues(
+                              alpha: 0.85,
+                            ),
                             fontSize: 11,
                           ),
                         ),
@@ -219,10 +221,7 @@ class SubPageHeader extends StatelessWidget {
                     ],
                   ),
                 ),
-                if (trailing != null) ...[
-                  const SizedBox(width: 8),
-                  trailing!,
-                ],
+                if (trailing != null) ...[const SizedBox(width: 8), trailing!],
               ],
             ),
           ),
@@ -280,7 +279,11 @@ class _HeaderIcon extends StatelessWidget {
 
 /// Small glowing countdown chip used in the booking flow headers.
 class TimerChip extends StatelessWidget {
-  const TimerChip({super.key, required this.label, this.icon = Icons.timer_outlined});
+  const TimerChip({
+    super.key,
+    required this.label,
+    this.icon = Icons.timer_outlined,
+  });
 
   final String label;
   final IconData icon;
@@ -294,7 +297,7 @@ class TimerChip extends StatelessWidget {
         borderRadius: BorderRadius.circular(999),
         boxShadow: [
           BoxShadow(
-            color: AppColors.tertiary.withOpacity(0.22),
+            color: AppColors.tertiary.withValues(alpha: 0.22),
             blurRadius: 12,
           ),
         ],

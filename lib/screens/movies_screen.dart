@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../state/app_state.dart';
@@ -20,7 +20,14 @@ class MoviesScreen extends ConsumerStatefulWidget {
 
 class _MoviesScreenState extends ConsumerState<MoviesScreen> {
   final TextEditingController _searchController = TextEditingController();
-  static const _genres = ['ALL', 'ACTION', 'SCI-FI', 'DRAMA', 'COMEDY', 'HORROR'];
+  static const _genres = [
+    'ALL',
+    'ACTION',
+    'SCI-FI',
+    'DRAMA',
+    'COMEDY',
+    'HORROR',
+  ];
   static const _sorts = ['Highest Rated', 'Newest', 'A → Z'];
 
   int _tab = 0;
@@ -37,9 +44,11 @@ class _MoviesScreenState extends ConsumerState<MoviesScreen> {
   List<Movie> get _results {
     final source = _tab == 0 ? MockData.nowShowing : MockData.comingSoon;
     var list = source.where((movie) {
-      final matchesGenre = _genre == 'ALL' ||
+      final matchesGenre =
+          _genre == 'ALL' ||
           movie.genres.any((g) => g.toUpperCase().contains(_genre));
-      final matchesQuery = _query.isEmpty ||
+      final matchesQuery =
+          _query.isEmpty ||
           movie.title.toLowerCase().contains(_query.toLowerCase()) ||
           movie.genres.any(
             (g) => g.toLowerCase().contains(_query.toLowerCase()),
@@ -62,9 +71,7 @@ class _MoviesScreenState extends ConsumerState<MoviesScreen> {
 
   void _openMovie(Movie movie) {
     Navigator.of(context).push(
-      MaterialPageRoute<void>(
-        builder: (_) => MovieDetailsScreen(movie: movie),
-      ),
+      MaterialPageRoute<void>(builder: (_) => MovieDetailsScreen(movie: movie)),
     );
   }
 
@@ -81,9 +88,7 @@ class _MoviesScreenState extends ConsumerState<MoviesScreen> {
               decoration: const BoxDecoration(
                 color: AppColors.surfaceLow,
                 borderRadius: BorderRadius.vertical(top: Radius.circular(28)),
-                border: Border(
-                  top: BorderSide(color: AppColors.white10),
-                ),
+                border: Border(top: BorderSide(color: AppColors.white10)),
               ),
               child: SafeArea(
                 top: false,
@@ -319,8 +324,7 @@ class _MoviesScreenState extends ConsumerState<MoviesScreen> {
                   padding: const EdgeInsets.fromLTRB(20, 0, 20, 120),
                   sliver: SliverLayoutBuilder(
                     builder: (context, constraints) {
-                      final cardWidth =
-                          (constraints.crossAxisExtent - 14) / 2;
+                      final cardWidth = (constraints.crossAxisExtent - 14) / 2;
                       return SliverGrid(
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,
@@ -328,19 +332,16 @@ class _MoviesScreenState extends ConsumerState<MoviesScreen> {
                           mainAxisSpacing: 20,
                           mainAxisExtent: cardWidth * 1.5 + 104,
                         ),
-                        delegate: SliverChildBuilderDelegate(
-                          (context, index) {
-                            final movie = results[index];
-                            return BrowseMovieCard(
-                              movie: movie,
-                              format: movie.comingSoon
-                                  ? 'DOLBY'
-                                  : (index.isEven ? 'IMAX' : 'DOLBY'),
-                              onTap: () => _openMovie(movie),
-                            );
-                          },
-                          childCount: results.length,
-                        ),
+                        delegate: SliverChildBuilderDelegate((context, index) {
+                          final movie = results[index];
+                          return BrowseMovieCard(
+                            movie: movie,
+                            format: movie.comingSoon
+                                ? 'DOLBY'
+                                : (index.isEven ? 'IMAX' : 'DOLBY'),
+                            onTap: () => _openMovie(movie),
+                          );
+                        }, childCount: results.length),
                       );
                     },
                   ),

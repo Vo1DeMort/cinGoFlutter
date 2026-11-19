@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../state/app_state.dart';
@@ -19,7 +19,14 @@ class HomeScreen extends ConsumerStatefulWidget {
 }
 
 class _HomeScreenState extends ConsumerState<HomeScreen> {
-  static const _genres = ['ALL', 'ACTION', 'SCI-FI', 'THRILLER', 'DRAMA', 'COMEDY'];
+  static const _genres = [
+    'ALL',
+    'ACTION',
+    'SCI-FI',
+    'THRILLER',
+    'DRAMA',
+    'COMEDY',
+  ];
   String _selectedGenre = 'ALL';
   final Set<String> _reminders = <String>{};
 
@@ -34,9 +41,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
   void _openMovie(Movie movie) {
     Navigator.of(context).push(
-      MaterialPageRoute<void>(
-        builder: (_) => MovieDetailsScreen(movie: movie),
-      ),
+      MaterialPageRoute<void>(builder: (_) => MovieDetailsScreen(movie: movie)),
     );
   }
 
@@ -159,7 +164,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                           padding: const EdgeInsets.symmetric(horizontal: 20),
                           scrollDirection: Axis.horizontal,
                           itemCount: _nowShowing.length,
-                          separatorBuilder: (_, __) => const SizedBox(width: 14),
+                          separatorBuilder: (_, __) =>
+                              const SizedBox(width: 14),
                           itemBuilder: (context, index) {
                             final movie = _nowShowing[index];
                             return PosterCard(
@@ -195,7 +201,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                             vertical: 3,
                           ),
                           decoration: BoxDecoration(
-                            color: AppColors.secondaryContainer.withOpacity(0.35),
+                            color: AppColors.secondaryContainer.withValues(
+                              alpha: 0.35,
+                            ),
                             borderRadius: BorderRadius.circular(6),
                           ),
                           child: Text(
@@ -305,9 +313,8 @@ class _HeroCard extends StatelessWidget {
                 'assets/images/dune_hero.jpg',
                 fit: BoxFit.cover,
                 alignment: const Alignment(0, -0.15),
-                errorBuilder: (_, __, ___) => const ColoredBox(
-                  color: AppColors.surfaceHigh,
-                ),
+                errorBuilder: (_, __, ___) =>
+                    const ColoredBox(color: AppColors.surfaceHigh),
               ),
               const DecoratedBox(
                 decoration: BoxDecoration(gradient: AppColors.heroScrim),
@@ -318,10 +325,7 @@ class _HeroCard extends StatelessWidget {
                 right: 14,
                 child: Row(
                   children: [
-                    const FormatTag(
-                      'IMAX 70MM',
-                      icon: Icons.theaters_outlined,
-                    ),
+                    const FormatTag('IMAX 70MM', icon: Icons.theaters_outlined),
                     const Spacer(),
                     Container(
                       padding: const EdgeInsets.symmetric(
@@ -329,7 +333,7 @@ class _HeroCard extends StatelessWidget {
                         vertical: 5,
                       ),
                       decoration: BoxDecoration(
-                        color: AppColors.surfaceLowest.withOpacity(0.55),
+                        color: AppColors.surfaceLowest.withValues(alpha: 0.55),
                         borderRadius: BorderRadius.circular(999),
                         border: Border.all(color: AppColors.white12),
                       ),
@@ -420,7 +424,7 @@ class _HeroCard extends StatelessWidget {
                             width: 48,
                             height: 48,
                             decoration: BoxDecoration(
-                              color: Colors.white.withOpacity(0.12),
+                              color: Colors.white.withValues(alpha: 0.12),
                               shape: BoxShape.circle,
                               border: Border.all(color: AppColors.white12),
                             ),
@@ -448,7 +452,7 @@ class _HeroCard extends StatelessWidget {
       text,
       style: AppText.labelCaps.copyWith(
         fontSize: 8.5,
-        color: Colors.white.withOpacity(0.92),
+        color: Colors.white.withValues(alpha: 0.92),
         letterSpacing: 0.7,
       ),
     );
@@ -476,11 +480,7 @@ class _DolbyPromoCard extends StatelessWidget {
           const Positioned(
             right: -30,
             top: -40,
-            child: GlowOrb(
-              color: AppColors.secondary,
-              size: 170,
-              opacity: 0.2,
-            ),
+            child: GlowOrb(color: AppColors.secondary, size: 170, opacity: 0.2),
           ),
           Padding(
             padding: const EdgeInsets.all(16),
@@ -505,7 +505,9 @@ class _DolbyPromoCard extends StatelessWidget {
                               vertical: 3,
                             ),
                             decoration: BoxDecoration(
-                              color: AppColors.primaryContainer.withOpacity(0.18),
+                              color: AppColors.primaryContainer.withValues(
+                                alpha: 0.18,
+                              ),
                               borderRadius: BorderRadius.circular(999),
                             ),
                             child: Text(
@@ -547,13 +549,13 @@ class _DolbyPromoCard extends StatelessWidget {
                   height: 62,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: AppColors.surfaceLowest.withOpacity(0.5),
+                    color: AppColors.surfaceLowest.withValues(alpha: 0.5),
                     border: Border.all(
-                      color: AppColors.tertiary.withOpacity(0.45),
+                      color: AppColors.tertiary.withValues(alpha: 0.45),
                     ),
                     boxShadow: [
                       BoxShadow(
-                        color: AppColors.tertiary.withOpacity(0.18),
+                        color: AppColors.tertiary.withValues(alpha: 0.18),
                         blurRadius: 18,
                       ),
                     ],

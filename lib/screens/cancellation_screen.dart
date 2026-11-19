@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../models/booking.dart';
@@ -32,8 +32,7 @@ class _CancellationScreenState extends ConsumerState<CancellationScreen> {
 
   double get _baseRefund => widget.booking.total;
 
-  double get _refund =>
-      _payout == 0 ? _baseRefund + 5.00 : _baseRefund;
+  double get _refund => _payout == 0 ? _baseRefund + 5.00 : _baseRefund;
 
   Future<void> _confirm() async {
     if (_confirming) return;
@@ -104,8 +103,10 @@ class _CancellationScreenState extends ConsumerState<CancellationScreen> {
     final seatTotal = booking.seats.length * 29.50;
     final surcharge = booking.format.contains('IMAX') ? 3.50 : 0.0;
     const taxes = 2.10;
-    final concessions =
-        (_baseRefund - seatTotal - surcharge - taxes).clamp(0.0, 999.0);
+    final concessions = (_baseRefund - seatTotal - surcharge - taxes).clamp(
+      0.0,
+      999.0,
+    );
 
     return Scaffold(
       backgroundColor: AppColors.surface,
@@ -242,7 +243,7 @@ class _CancellationScreenState extends ConsumerState<CancellationScreen> {
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: AppColors.tertiary.withOpacity(0.28)),
+        border: Border.all(color: AppColors.tertiary.withValues(alpha: 0.28)),
         gradient: const LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
@@ -272,7 +273,7 @@ class _CancellationScreenState extends ConsumerState<CancellationScreen> {
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                 decoration: BoxDecoration(
-                  color: AppColors.tertiary.withOpacity(0.14),
+                  color: AppColors.tertiary.withValues(alpha: 0.14),
                   borderRadius: BorderRadius.circular(4),
                 ),
                 child: Text(
@@ -293,9 +294,11 @@ class _CancellationScreenState extends ConsumerState<CancellationScreen> {
                 width: 22,
                 height: 22,
                 decoration: BoxDecoration(
-                  color: AppColors.tertiary.withOpacity(0.1),
+                  color: AppColors.tertiary.withValues(alpha: 0.1),
                   shape: BoxShape.circle,
-                  border: Border.all(color: AppColors.tertiary.withOpacity(0.3)),
+                  border: Border.all(
+                    color: AppColors.tertiary.withValues(alpha: 0.3),
+                  ),
                 ),
                 child: const Icon(
                   Icons.schedule_rounded,
@@ -326,8 +329,7 @@ class _CancellationScreenState extends ConsumerState<CancellationScreen> {
                         ),
                       ),
                       TextSpan(
-                        text:
-                            '\n3h 15m remaining. Seats and pre-ordered treats release instantly.',
+                        text: '\n3h 15m remaining. Seats and pre-ordered treats release instantly.',
                         style: AppText.bodySmall.copyWith(
                           fontSize: 9.5,
                           color: AppColors.onSurfaceVariant,
@@ -541,15 +543,21 @@ class _CancellationScreenState extends ConsumerState<CancellationScreen> {
             ],
           ),
           const SizedBox(height: 11),
-          _row('${booking.seats.length}x VIP Ultra Recliner Seats',
-              '\$${seatTotal.toStringAsFixed(2)}'),
-          _row('IMAX 70mm Laser Surcharge',
-              surcharge == 0 ? 'Waived' : '\$${surcharge.toStringAsFixed(2)}'),
+          _row(
+            '${booking.seats.length}x VIP Ultra Recliner Seats',
+            '\$${seatTotal.toStringAsFixed(2)}',
+          ),
+          _row(
+            'IMAX 70mm Laser Surcharge',
+            surcharge == 0 ? 'Waived' : '\$${surcharge.toStringAsFixed(2)}',
+          ),
           if (concessions > 0)
-            _row('Pre-ordered Concessions', '\$${concessions.toStringAsFixed(2)}',
-                highlight: '-\$2 Gold'),
-          _row('Online Booking Fee', 'Waived',
-              strike: '\$3.00', accent: true),
+            _row(
+              'Pre-ordered Concessions',
+              '\$${concessions.toStringAsFixed(2)}',
+              highlight: '-\$2 Gold',
+            ),
+          _row('Online Booking Fee', 'Waived', strike: '\$3.00', accent: true),
           _row('Estimated State Tax & Fees', '\$${taxes.toStringAsFixed(2)}'),
           _row('Cancellation Processing Fee', 'FREE', accent: true),
           const SizedBox(height: 8),
@@ -689,7 +697,7 @@ class _CancellationScreenState extends ConsumerState<CancellationScreen> {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 1),
               decoration: BoxDecoration(
-                color: AppColors.tertiaryContainer.withOpacity(0.3),
+                color: AppColors.tertiaryContainer.withValues(alpha: 0.3),
                 borderRadius: BorderRadius.circular(3),
               ),
               child: Text(
@@ -746,8 +754,7 @@ class _CancellationScreenState extends ConsumerState<CancellationScreen> {
           title: 'Original Methods',
           badge: 'SPLIT BACK',
           amount: _baseRefund,
-          description:
-              '\$34.50 to CineGo Wallet (instant) • \$61.60 to Apple Pay Mastercard (3–5 business days).',
+          description: '\$34.50 to CineGo Wallet (instant) • \$61.60 to Apple Pay Mastercard (3–5 business days).',
           icon: Icons.credit_card_rounded,
           onTap: () => setState(() => _payout = 1),
         ),
@@ -814,8 +821,7 @@ class _CancellationScreenState extends ConsumerState<CancellationScreen> {
                         ),
                       ),
                       TextSpan(
-                        text:
-                            ' for this reservation will be reversed. Your Gold tier status and weekly streak remain preserved.',
+                        text: ' for this reservation will be reversed. Your Gold tier status and weekly streak remain preserved.',
                         style: AppText.bodySmall.copyWith(
                           fontSize: 8.5,
                           height: 1.45,
@@ -869,7 +875,7 @@ class _PayoutTile extends StatelessWidget {
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
             color: selected
-                ? AppColors.primaryContainer.withOpacity(0.5)
+                ? AppColors.primaryContainer.withValues(alpha: 0.5)
                 : AppColors.white06,
           ),
         ),

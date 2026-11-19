@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../data/mock_data.dart';
@@ -37,14 +37,18 @@ class _SnacksScreenState extends ConsumerState<SnacksScreen> {
     super.didChangeDependencies();
     if (_seeded) return;
     _seeded = true;
-    final state = ref.read(appStateProvider);
-    if (state.cart.isEmpty) {
-      final combo = MockData.snacks.firstWhere((s) => s.id == 'dune-combo');
-      final popcorn =
-          MockData.snacks.firstWhere((s) => s.id == 'artisanal-popcorn');
-      state.addSnack(combo);
-      state.addSnack(popcorn, size: popcorn.sizes[1]);
-    }
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      final state = ref.read(appStateProvider);
+      if (state.cart.isEmpty) {
+        final combo = MockData.snacks.firstWhere((s) => s.id == 'dune-combo');
+        final popcorn = MockData.snacks.firstWhere(
+          (s) => s.id == 'artisanal-popcorn',
+        );
+        state.addSnack(combo);
+        state.addSnack(popcorn, size: popcorn.sizes[1]);
+      }
+    });
   }
 
   List<String> get _visibleSections {
@@ -147,7 +151,7 @@ class _SnacksScreenState extends ConsumerState<SnacksScreen> {
                 Container(
                   padding: const EdgeInsets.all(13),
                   decoration: BoxDecoration(
-                    color: AppColors.surfaceLow.withOpacity(0.6),
+                    color: AppColors.surfaceLow.withValues(alpha: 0.6),
                     borderRadius: BorderRadius.circular(14),
                     border: Border.all(color: AppColors.white06),
                   ),
@@ -173,8 +177,7 @@ class _SnacksScreenState extends ConsumerState<SnacksScreen> {
                                 ),
                               ),
                               TextSpan(
-                                text:
-                                    'before the movie previews conclude. Zero line waiting.',
+                                text: 'before the movie previews conclude. Zero line waiting.',
                                 style: AppText.bodySmall.copyWith(
                                   fontSize: 9.5,
                                   color: AppColors.outline,
@@ -250,7 +253,7 @@ class _SnacksScreenState extends ConsumerState<SnacksScreen> {
   Widget _buildBottomBar(AppState state) {
     return Container(
       decoration: BoxDecoration(
-        color: AppColors.surfaceLowest.withOpacity(0.98),
+        color: AppColors.surfaceLowest.withValues(alpha: 0.98),
         border: const Border(top: BorderSide(color: AppColors.white10)),
         boxShadow: const [
           BoxShadow(
@@ -282,11 +285,14 @@ class _SnacksScreenState extends ConsumerState<SnacksScreen> {
                           ),
                         ),
                         const SizedBox(width: 8),
-                        Text(
-                          'In-seat fee: ',
-                          style: AppText.bodySmall.copyWith(
-                            fontSize: 9,
-                            color: AppColors.outline,
+                        Flexible(
+                          child: Text(
+                            'In-seat fee: ',
+                            overflow: TextOverflow.ellipsis,
+                            style: AppText.bodySmall.copyWith(
+                              fontSize: 9,
+                              color: AppColors.outline,
+                            ),
                           ),
                         ),
                         Text(
@@ -342,8 +348,7 @@ class _SnacksScreenState extends ConsumerState<SnacksScreen> {
               Expanded(
                 flex: 3,
                 child: PrimaryButton(
-                  label:
-                      'Review & Pay \$${state.cartTotal.toStringAsFixed(2)}',
+                  label: 'Review & Pay \$${state.cartTotal.toStringAsFixed(2)}',
                   height: 52,
                   fontSize: 11.5,
                   onTap: () => _openCheckout(),
@@ -412,8 +417,9 @@ class _InfoTile extends StatelessWidget {
                           vertical: 1,
                         ),
                         decoration: BoxDecoration(
-                          color: (badgeColor ?? AppColors.tertiary)
-                              .withOpacity(0.16),
+                          color: (badgeColor ?? AppColors.tertiary).withValues(
+                            alpha: 0.16,
+                          ),
                           borderRadius: BorderRadius.circular(3),
                         ),
                         child: Text(
@@ -498,7 +504,7 @@ class _CinePassBanner extends StatelessWidget {
                         vertical: 1,
                       ),
                       decoration: BoxDecoration(
-                        color: AppColors.tertiary.withOpacity(0.16),
+                        color: AppColors.tertiary.withValues(alpha: 0.16),
                         borderRadius: BorderRadius.circular(3),
                       ),
                       child: Text(
@@ -595,7 +601,9 @@ class _SnackCard extends StatelessWidget {
                             vertical: 1,
                           ),
                           decoration: BoxDecoration(
-                            color: AppColors.surfaceLowest.withOpacity(0.8),
+                            color: AppColors.surfaceLowest.withValues(
+                              alpha: 0.8,
+                            ),
                             borderRadius: BorderRadius.circular(3),
                           ),
                           child: Text(
@@ -637,8 +645,7 @@ class _SnackCard extends StatelessWidget {
                               ),
                             ),
                           ),
-                        if (item.isVegetarian)
-                          const _DietTag('VEGETARIAN'),
+                        if (item.isVegetarian) const _DietTag('VEGETARIAN'),
                         if (item.isGlutenFree) const _DietTag('GLUTEN-FREE'),
                         if (item.badge != null &&
                             item.section != 'Auditorium Exclusives')
@@ -715,8 +722,8 @@ class _SnackCard extends StatelessWidget {
             const SizedBox(height: 10),
             Row(
               children: item.sizes.map((option) {
-                final selected = (size?.label ?? item.sizes[1].label) ==
-                    option.label;
+                final selected =
+                    (size?.label ?? item.sizes[1].label) == option.label;
                 return Expanded(
                   child: Padding(
                     padding: EdgeInsets.only(
@@ -734,12 +741,16 @@ class _SnackCard extends StatelessWidget {
                         ),
                         decoration: BoxDecoration(
                           color: selected
-                              ? AppColors.primaryContainer.withOpacity(0.18)
+                              ? AppColors.primaryContainer.withValues(
+                                  alpha: 0.18,
+                                )
                               : AppColors.surfaceContainer,
                           borderRadius: BorderRadius.circular(8),
                           border: Border.all(
                             color: selected
-                                ? AppColors.primaryContainer.withOpacity(0.5)
+                                ? AppColors.primaryContainer.withValues(
+                                    alpha: 0.5,
+                                  )
                                 : AppColors.white06,
                           ),
                         ),
@@ -760,7 +771,7 @@ class _SnackCard extends StatelessWidget {
                               style: AppText.labelCaps.copyWith(
                                 fontSize: 6.5,
                                 color: selected
-                                    ? AppColors.primary.withOpacity(0.85)
+                                    ? AppColors.primary.withValues(alpha: 0.85)
                                     : AppColors.outline,
                               ),
                             ),
@@ -778,7 +789,7 @@ class _SnackCard extends StatelessWidget {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
               decoration: BoxDecoration(
-                color: AppColors.surfaceContainer.withOpacity(0.7),
+                color: AppColors.surfaceContainer.withValues(alpha: 0.7),
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Row(

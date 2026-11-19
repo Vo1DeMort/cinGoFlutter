@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../data/mock_data.dart';
@@ -31,7 +31,9 @@ class _CinemasScreenState extends ConsumerState<CinemasScreen> {
     if (_filter == 0) return MockData.cinemas;
     final needle = _filters[_filter].toUpperCase();
     return MockData.cinemas.where((cinema) {
-      return cinema.badges.any((badge) => badge.toUpperCase().contains(needle)) ||
+      return cinema.badges.any(
+            (badge) => badge.toUpperCase().contains(needle),
+          ) ||
           cinema.formats.any((format) => format.format.contains(needle));
     }).toList();
   }
@@ -315,9 +317,8 @@ class _CinemasScreenState extends ConsumerState<CinemasScreen> {
                   child: Image.asset(
                     'assets/images/cinema_hall.jpg',
                     fit: BoxFit.cover,
-                    errorBuilder: (_, __, ___) => const ColoredBox(
-                      color: AppColors.surfaceHigh,
-                    ),
+                    errorBuilder: (_, __, ___) =>
+                        const ColoredBox(color: AppColors.surfaceHigh),
                   ),
                 ),
                 const DecoratedBox(
@@ -328,7 +329,11 @@ class _CinemasScreenState extends ConsumerState<CinemasScreen> {
                     gradient: LinearGradient(
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
-                      colors: [Color(0x330A0E17), Color(0x000A0E17), Color(0xD90A0E17)],
+                      colors: [
+                        Color(0x330A0E17),
+                        Color(0x000A0E17),
+                        Color(0xD90A0E17),
+                      ],
                       stops: [0, 0.4, 1],
                     ),
                   ),
@@ -371,7 +376,7 @@ class _CinemasScreenState extends ConsumerState<CinemasScreen> {
                     width: 26,
                     height: 26,
                     decoration: BoxDecoration(
-                      color: AppColors.surfaceLowest.withOpacity(0.7),
+                      color: AppColors.surfaceLowest.withValues(alpha: 0.7),
                       shape: BoxShape.circle,
                       border: Border.all(color: AppColors.white12),
                     ),
@@ -466,7 +471,10 @@ class _CinemasScreenState extends ConsumerState<CinemasScreen> {
                   children: [
                     _actionChip(Icons.near_me_outlined, 'Navigate'),
                     const SizedBox(width: 6),
-                    _actionChip(Icons.confirmation_number_outlined, 'Box Office'),
+                    _actionChip(
+                      Icons.confirmation_number_outlined,
+                      'Box Office',
+                    ),
                     const SizedBox(width: 6),
                     _actionChip(Icons.room_service_outlined, 'Dine-In'),
                   ],
@@ -576,7 +584,7 @@ class _CinemasScreenState extends ConsumerState<CinemasScreen> {
     return Container(
       padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
-        color: AppColors.surfaceContainer.withOpacity(0.6),
+        color: AppColors.surfaceContainer.withValues(alpha: 0.6),
         borderRadius: BorderRadius.circular(10),
       ),
       child: Row(
@@ -697,9 +705,8 @@ class _CinemasScreenState extends ConsumerState<CinemasScreen> {
                   child: Image.asset(
                     'assets/images/map_cinema.jpg',
                     fit: BoxFit.cover,
-                    errorBuilder: (_, __, ___) => const ColoredBox(
-                      color: AppColors.surfaceHigh,
-                    ),
+                    errorBuilder: (_, __, ___) =>
+                        const ColoredBox(color: AppColors.surfaceHigh),
                   ),
                 ),
                 Center(
@@ -707,10 +714,10 @@ class _CinemasScreenState extends ConsumerState<CinemasScreen> {
                     width: 28,
                     height: 28,
                     decoration: BoxDecoration(
-                      color: AppColors.primaryContainer.withOpacity(0.22),
+                      color: AppColors.primaryContainer.withValues(alpha: 0.22),
                       shape: BoxShape.circle,
                       border: Border.all(
-                        color: AppColors.tertiary.withOpacity(0.55),
+                        color: AppColors.tertiary.withValues(alpha: 0.55),
                       ),
                     ),
                     child: const Icon(
@@ -735,7 +742,7 @@ class _CinemasScreenState extends ConsumerState<CinemasScreen> {
                         vertical: 5,
                       ),
                       decoration: BoxDecoration(
-                        color: AppColors.surfaceLowest.withOpacity(0.85),
+                        color: AppColors.surfaceLowest.withValues(alpha: 0.85),
                         borderRadius: BorderRadius.circular(7),
                         border: Border.all(color: AppColors.white10),
                       ),

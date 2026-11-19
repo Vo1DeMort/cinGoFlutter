@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../state/app_state.dart';
@@ -101,7 +101,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                           vertical: 5,
                         ),
                         decoration: BoxDecoration(
-                          color: AppColors.surfaceHigh.withOpacity(0.75),
+                          color: AppColors.surfaceHigh.withValues(alpha: 0.75),
                           borderRadius: BorderRadius.circular(999),
                         ),
                         child: Row(
@@ -250,7 +250,8 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                         Row(
                           children: [
                             GestureDetector(
-                              onTap: () => setState(() => _remember = !_remember),
+                              onTap: () =>
+                                  setState(() => _remember = !_remember),
                               child: Row(
                                 children: [
                                   Container(
@@ -302,8 +303,8 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                           label: _submitting
                               ? 'Authenticating…'
                               : isSignIn
-                                  ? 'Sign In to CineGo'
-                                  : 'Create VIP Account',
+                              ? 'Sign In to CineGo'
+                              : 'Create VIP Account',
                           trailingIcon: Icons.arrow_forward_rounded,
                           height: 52,
                           fontSize: 13,
@@ -328,7 +329,9 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                                   width: 24,
                                   height: 24,
                                   decoration: BoxDecoration(
-                                    color: AppColors.tertiary.withOpacity(0.14),
+                                    color: AppColors.tertiary.withValues(
+                                      alpha: 0.14,
+                                    ),
                                     shape: BoxShape.circle,
                                   ),
                                   child: const Icon(
@@ -410,7 +413,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                   Container(
                     padding: const EdgeInsets.all(12),
                     decoration: BoxDecoration(
-                      color: AppColors.surfaceLowest.withOpacity(0.8),
+                      color: AppColors.surfaceLowest.withValues(alpha: 0.8),
                       borderRadius: BorderRadius.circular(16),
                     ),
                     child: Row(
@@ -551,9 +554,8 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
               'assets/images/auth_cinema.jpg',
               fit: BoxFit.cover,
               opacity: const AlwaysStoppedAnimation(0.3),
-              errorBuilder: (_, __, ___) => const ColoredBox(
-                color: AppColors.surfaceHigh,
-              ),
+              errorBuilder: (_, __, ___) =>
+                  const ColoredBox(color: AppColors.surfaceHigh),
             ),
           ),
           Positioned.fill(
@@ -563,8 +565,8 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [
-                    AppColors.surfaceLow.withOpacity(0.55),
-                    AppColors.surfaceLow.withOpacity(0.92),
+                    AppColors.surfaceLow.withValues(alpha: 0.55),
+                    AppColors.surfaceLow.withValues(alpha: 0.92),
                     AppColors.surfaceLow,
                   ],
                 ),
@@ -583,7 +585,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                     shape: BoxShape.circle,
                     boxShadow: [
                       BoxShadow(
-                        color: AppColors.tertiary.withOpacity(0.2),
+                        color: AppColors.tertiary.withValues(alpha: 0.2),
                         blurRadius: 20,
                       ),
                     ],
@@ -609,7 +611,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                 Container(
                   padding: const EdgeInsets.all(9),
                   decoration: BoxDecoration(
-                    color: AppColors.surfaceContainer.withOpacity(0.9),
+                    color: AppColors.surfaceContainer.withValues(alpha: 0.9),
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Row(
@@ -618,7 +620,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                         width: 30,
                         height: 30,
                         decoration: BoxDecoration(
-                          color: AppColors.tertiary.withOpacity(0.16),
+                          color: AppColors.tertiary.withValues(alpha: 0.16),
                           borderRadius: BorderRadius.circular(8),
                         ),
                         child: const Icon(
@@ -751,15 +753,17 @@ class _AuthField extends StatelessWidget {
         enabledBorder: border,
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(15),
-          borderSide: BorderSide(color: AppColors.tertiary.withOpacity(0.7)),
+          borderSide: BorderSide(
+            color: AppColors.tertiary.withValues(alpha: 0.7),
+          ),
         ),
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(15),
-          borderSide: BorderSide(color: AppColors.error.withOpacity(0.7)),
+          borderSide: BorderSide(color: AppColors.error.withValues(alpha: 0.7)),
         ),
         focusedErrorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(15),
-          borderSide: BorderSide(color: AppColors.error.withOpacity(0.7)),
+          borderSide: BorderSide(color: AppColors.error.withValues(alpha: 0.7)),
         ),
         errorStyle: AppText.bodySmall.copyWith(
           fontSize: 8.5,

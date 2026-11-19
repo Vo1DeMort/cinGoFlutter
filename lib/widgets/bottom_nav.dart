@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../theme/app_colors.dart';
 import '../theme/app_theme.dart';
@@ -58,7 +58,7 @@ class CineGoBottomNav extends StatelessWidget {
     return Container(
       height: 70,
       decoration: BoxDecoration(
-        color: AppColors.surfaceLowest.withOpacity(0.96),
+        color: AppColors.surfaceLowest.withValues(alpha: 0.96),
         borderRadius: BorderRadius.circular(26),
         border: Border.all(color: AppColors.white10),
         boxShadow: const [
@@ -90,8 +90,9 @@ class CineGoBottomNav extends StatelessWidget {
                       boxShadow: selected
                           ? [
                               BoxShadow(
-                                color: AppColors.primaryContainer
-                                    .withOpacity(0.45),
+                                color: AppColors.primaryContainer.withValues(
+                                  alpha: 0.45,
+                                ),
                                 blurRadius: 14,
                                 spreadRadius: 1,
                               ),
@@ -111,8 +112,7 @@ class CineGoBottomNav extends StatelessWidget {
                       fontSize: 7.8,
                       letterSpacing: 0.8,
                       color: selected ? AppColors.tertiary : AppColors.outline,
-                      fontWeight:
-                          selected ? FontWeight.w700 : FontWeight.w600,
+                      fontWeight: selected ? FontWeight.w700 : FontWeight.w600,
                     ),
                   ),
                 ],

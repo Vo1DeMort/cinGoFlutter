@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../data/mock_data.dart';
 import '../models/movie.dart';
@@ -60,7 +60,9 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
         time: option.time,
         price: format.price,
         day: _selectedDay == 0 ? 'Today' : 'Fri, Oct 25',
-        auditorium: listing.name.contains('Alamo') ? 'Theater 4' : 'Auditorium 1',
+        auditorium: listing.name.contains('Alamo')
+            ? 'Theater 4'
+            : 'Auditorium 1',
       );
     });
   }
@@ -93,10 +95,8 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
     }
     Navigator.of(context).push(
       MaterialPageRoute<void>(
-        builder: (_) => SeatSelectionScreen(
-          movie: widget.movie,
-          showtime: selected,
-        ),
+        builder: (_) =>
+            SeatSelectionScreen(movie: widget.movie, showtime: selected),
       ),
     );
   }
@@ -147,10 +147,8 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
   Widget _buildTopBar() {
     return Container(
       decoration: BoxDecoration(
-        color: AppColors.surfaceLowest.withOpacity(0.92),
-        border: const Border(
-          bottom: BorderSide(color: AppColors.white06),
-        ),
+        color: AppColors.surfaceLowest.withValues(alpha: 0.92),
+        border: const Border(bottom: BorderSide(color: AppColors.white06)),
       ),
       child: SafeArea(
         bottom: false,
@@ -219,14 +217,15 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                       : Icons.bookmark_border_rounded,
                   iconSize: 18,
                   size: 38,
-                  foreground:
-                      _saved ? AppColors.tertiary : AppColors.onSurface,
+                  foreground: _saved ? AppColors.tertiary : AppColors.onSurface,
                   background: AppColors.surfaceContainer,
                   onTap: () {
                     setState(() => _saved = !_saved);
                     showCineSnack(
                       context,
-                      _saved ? 'Added to your watchlist.' : 'Removed from watchlist.',
+                      _saved
+                          ? 'Added to your watchlist.'
+                          : 'Removed from watchlist.',
                       icon: Icons.bookmark_added_outlined,
                     );
                   },
@@ -249,9 +248,8 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
             movie.backdrop ?? movie.poster,
             fit: BoxFit.cover,
             alignment: Alignment.topCenter,
-            errorBuilder: (_, __, ___) => const ColoredBox(
-              color: AppColors.surfaceHigh,
-            ),
+            errorBuilder: (_, __, ___) =>
+                const ColoredBox(color: AppColors.surfaceHigh),
           ),
           const DecoratedBox(
             decoration: BoxDecoration(
@@ -294,9 +292,8 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                     child: Image.asset(
                       movie.poster,
                       fit: BoxFit.cover,
-                      errorBuilder: (_, __, ___) => const ColoredBox(
-                        color: AppColors.surfaceHigh,
-                      ),
+                      errorBuilder: (_, __, ___) =>
+                          const ColoredBox(color: AppColors.surfaceHigh),
                     ),
                   ),
                 ),
@@ -321,7 +318,9 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                             ),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(4),
-                              border: Border.all(color: AppColors.outlineVariant),
+                              border: Border.all(
+                                color: AppColors.outlineVariant,
+                              ),
                             ),
                             child: Text(
                               movie.certificate,
@@ -564,7 +563,9 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                     boxShadow: selected
                         ? [
                             BoxShadow(
-                              color: AppColors.primaryContainer.withOpacity(0.4),
+                              color: AppColors.primaryContainer.withValues(
+                                alpha: 0.4,
+                              ),
                               blurRadius: 16,
                               offset: const Offset(0, 6),
                             ),
@@ -579,7 +580,7 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                         style: AppText.labelCaps.copyWith(
                           fontSize: 8,
                           color: selected
-                              ? Colors.white.withOpacity(0.85)
+                              ? Colors.white.withValues(alpha: 0.85)
                               : AppColors.outline,
                           letterSpacing: 0.5,
                         ),
@@ -598,7 +599,7 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                         style: AppText.labelCaps.copyWith(
                           fontSize: 7,
                           color: selected
-                              ? Colors.white.withOpacity(0.7)
+                              ? Colors.white.withValues(alpha: 0.7)
                               : AppColors.outline,
                         ),
                       ),
@@ -679,10 +680,8 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
     final selected = _selected;
     return Container(
       decoration: BoxDecoration(
-        color: AppColors.surfaceLowest.withOpacity(0.97),
-        border: const Border(
-          top: BorderSide(color: AppColors.white10),
-        ),
+        color: AppColors.surfaceLowest.withValues(alpha: 0.97),
+        border: const Border(top: BorderSide(color: AppColors.white10)),
         boxShadow: const [
           BoxShadow(
             color: Color(0xB3000000),
@@ -844,7 +843,9 @@ class _CinemaShowtimeCard extends StatelessWidget {
             spacing: 6,
             runSpacing: 6,
             children: [
-              ...listing.badges.take(3).map(
+              ...listing.badges
+                  .take(3)
+                  .map(
                     (badge) => Container(
                       padding: const EdgeInsets.symmetric(
                         horizontal: 7,
@@ -863,7 +864,9 @@ class _CinemaShowtimeCard extends StatelessWidget {
                       ),
                     ),
                   ),
-              ...listing.amenities.take(2).map(
+              ...listing.amenities
+                  .take(2)
+                  .map(
                     (amenity) => Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
@@ -925,7 +928,8 @@ class _CinemaShowtimeCard extends StatelessWidget {
                   const SizedBox(height: 7),
                   Row(
                     children: format.times.map((option) {
-                      final isSelected = selected != null &&
+                      final isSelected =
+                          selected != null &&
                           selected!.cinema == listing.name &&
                           selected!.format == format.format &&
                           selected!.time == option.time;
@@ -968,12 +972,12 @@ class _TimeChip extends StatelessWidget {
   Widget build(BuildContext context) {
     final disabled = !option.available;
     final statusColor = selected
-        ? Colors.white.withOpacity(0.8)
+        ? Colors.white.withValues(alpha: 0.8)
         : option.status == 'Filling Fast'
-            ? AppColors.amber
-            : option.status == 'Almost Full' || option.status == 'Few Left'
-                ? AppColors.error
-                : AppColors.success;
+        ? AppColors.amber
+        : option.status == 'Almost Full' || option.status == 'Few Left'
+        ? AppColors.error
+        : AppColors.success;
 
     return GestureDetector(
       onTap: onTap,
@@ -988,13 +992,13 @@ class _TimeChip extends StatelessWidget {
             color: selected
                 ? Colors.transparent
                 : disabled
-                    ? AppColors.outlineVariant.withOpacity(0.3)
-                    : AppColors.white06,
+                ? AppColors.outlineVariant.withValues(alpha: 0.3)
+                : AppColors.white06,
           ),
           boxShadow: selected
               ? [
                   BoxShadow(
-                    color: AppColors.primaryContainer.withOpacity(0.45),
+                    color: AppColors.primaryContainer.withValues(alpha: 0.45),
                     blurRadius: 14,
                     offset: const Offset(0, 4),
                   ),
@@ -1009,10 +1013,10 @@ class _TimeChip extends StatelessWidget {
               style: AppText.labelFormat.copyWith(
                 fontSize: 10.5,
                 color: disabled
-                    ? AppColors.outline.withOpacity(0.45)
+                    ? AppColors.outline.withValues(alpha: 0.45)
                     : selected
-                        ? Colors.white
-                        : AppColors.onSurface,
+                    ? Colors.white
+                    : AppColors.onSurface,
               ),
             ),
             const SizedBox(height: 2),
@@ -1024,7 +1028,7 @@ class _TimeChip extends StatelessWidget {
                 fontSize: 6.5,
                 letterSpacing: 0,
                 color: disabled
-                    ? AppColors.outline.withOpacity(0.4)
+                    ? AppColors.outline.withValues(alpha: 0.4)
                     : statusColor,
               ),
             ),

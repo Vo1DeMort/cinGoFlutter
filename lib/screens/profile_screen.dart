@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../state/app_state.dart';
@@ -51,7 +51,10 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
               const SizedBox(height: 8),
               _buildPayments(state),
               const SizedBox(height: 18),
-              _sectionTitle(Icons.settings_outlined, 'App Preferences & Support'),
+              _sectionTitle(
+                Icons.settings_outlined,
+                'App Preferences & Support',
+              ),
               const SizedBox(height: 8),
               _buildPreferences(state),
               const SizedBox(height: 16),
@@ -70,10 +73,10 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                 child: Container(
                   height: 46,
                   decoration: BoxDecoration(
-                    color: AppColors.errorContainer.withOpacity(0.28),
+                    color: AppColors.errorContainer.withValues(alpha: 0.28),
                     borderRadius: BorderRadius.circular(999),
                     border: Border.all(
-                      color: AppColors.error.withOpacity(0.18),
+                      color: AppColors.error.withValues(alpha: 0.18),
                     ),
                   ),
                   child: Row(
@@ -165,7 +168,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       border: Border.all(
-                        color: AppColors.tertiary.withOpacity(0.7),
+                        color: AppColors.tertiary.withValues(alpha: 0.7),
                         width: 1.5,
                       ),
                       image: const DecorationImage(
@@ -174,7 +177,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                       ),
                       boxShadow: [
                         BoxShadow(
-                          color: AppColors.tertiary.withOpacity(0.18),
+                          color: AppColors.tertiary.withValues(alpha: 0.18),
                           blurRadius: 16,
                         ),
                       ],
@@ -189,7 +192,10 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         color: AppColors.amber,
-                        border: Border.all(color: AppColors.surfaceLow, width: 2),
+                        border: Border.all(
+                          color: AppColors.surfaceLow,
+                          width: 2,
+                        ),
                       ),
                       child: const Icon(
                         Icons.star_rounded,
@@ -268,25 +274,17 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
           Container(
             padding: const EdgeInsets.symmetric(vertical: 9),
             decoration: BoxDecoration(
-              color: AppColors.surfaceLowest.withOpacity(0.55),
+              color: AppColors.surfaceLowest.withValues(alpha: 0.55),
               borderRadius: BorderRadius.circular(12),
             ),
             child: Row(
               children: [
                 Expanded(child: _stat('24', 'WATCHED')),
-                Container(
-                  width: 1,
-                  height: 24,
-                  color: AppColors.white10,
-                ),
+                Container(width: 1, height: 24, color: AppColors.white10),
                 Expanded(
                   child: _stat('4,850', 'POINTS', color: AppColors.tertiary),
                 ),
-                Container(
-                  width: 1,
-                  height: 24,
-                  color: AppColors.white10,
-                ),
+                Container(width: 1, height: 24, color: AppColors.white10),
                 Expanded(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -588,11 +586,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                   color: AppColors.secondary,
                   compact: true,
                 ),
-                FormatTag(
-                  'REALD 3D',
-                  color: AppColors.primary,
-                  compact: true,
-                ),
+                FormatTag('REALD 3D', color: AppColors.primary, compact: true),
               ],
             ),
           ),

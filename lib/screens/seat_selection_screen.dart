@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../models/movie.dart';
 import '../models/showtime.dart';
@@ -27,13 +27,24 @@ class SeatSelectionScreen extends StatefulWidget {
 class _SeatSelectionScreenState extends State<SeatSelectionScreen> {
   static const _rows = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
   static const _taken = <String>{
-    'A3', 'A4', 'A7',
-    'B9', 'B10',
-    'C3', 'C8',
-    'D3', 'D4',
-    'E3', 'E4', 'E9', 'E10',
-    'F6', 'F9', 'F10',
-    'G5', 'G6',
+    'A3',
+    'A4',
+    'A7',
+    'B9',
+    'B10',
+    'C3',
+    'C8',
+    'D3',
+    'D4',
+    'E3',
+    'E4',
+    'E9',
+    'E10',
+    'F6',
+    'F9',
+    'F10',
+    'G5',
+    'G6',
   };
 
   final Set<String> _selected = {'E5', 'E6'};
@@ -81,8 +92,9 @@ class _SeatSelectionScreenState extends State<SeatSelectionScreen> {
     return total;
   }
 
-  int get _vipCount =>
-      _selected.where((seat) => seat.startsWith('E') || seat.startsWith('F')).length;
+  int get _vipCount => _selected
+      .where((seat) => seat.startsWith('E') || seat.startsWith('F'))
+      .length;
 
   void _toggleSeat(String seat) {
     setState(() {
@@ -185,7 +197,7 @@ class _SeatSelectionScreenState extends State<SeatSelectionScreen> {
                         vertical: 8,
                       ),
                       decoration: BoxDecoration(
-                        color: AppColors.surfaceLow.withOpacity(0.65),
+                        color: AppColors.surfaceLow.withValues(alpha: 0.65),
                         borderRadius: BorderRadius.circular(999),
                         border: Border.all(color: AppColors.white06),
                       ),
@@ -237,11 +249,7 @@ class _SeatSelectionScreenState extends State<SeatSelectionScreen> {
   }
 
   Widget _legendSeparator() {
-    return Container(
-      width: 1,
-      height: 12,
-      color: AppColors.white10,
-    );
+    return Container(width: 1, height: 12, color: AppColors.white10);
   }
 
   Widget _buildSeatMap() {
@@ -360,6 +368,7 @@ class _SeatSelectionScreenState extends State<SeatSelectionScreen> {
     final radius = isVip ? 7.0 : 4.5;
 
     return GestureDetector(
+      key: ValueKey('seat-$seat'),
       onTap: taken ? null : () => _toggleSeat(seat),
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 150),
@@ -370,20 +379,20 @@ class _SeatSelectionScreenState extends State<SeatSelectionScreen> {
           color: selected
               ? null
               : taken
-                  ? AppColors.surfaceLowest.withOpacity(0.45)
-                  : AppColors.surfaceHigh,
+              ? AppColors.surfaceLowest.withValues(alpha: 0.45)
+              : AppColors.surfaceHigh,
           borderRadius: BorderRadius.circular(radius),
           border: Border.all(
             color: selected
                 ? Colors.transparent
                 : isVip && !taken
-                    ? AppColors.tertiary.withOpacity(0.3)
-                    : Colors.transparent,
+                ? AppColors.tertiary.withValues(alpha: 0.3)
+                : Colors.transparent,
           ),
           boxShadow: selected
               ? [
                   BoxShadow(
-                    color: AppColors.primaryContainer.withOpacity(0.9),
+                    color: AppColors.primaryContainer.withValues(alpha: 0.9),
                     blurRadius: 12,
                   ),
                 ]
@@ -393,21 +402,21 @@ class _SeatSelectionScreenState extends State<SeatSelectionScreen> {
             ? Icon(
                 Icons.close_rounded,
                 size: isVip ? 12 : 10,
-                color: AppColors.outline.withOpacity(0.6),
+                color: AppColors.outline.withValues(alpha: 0.6),
               )
             : selected
-                ? Icon(
-                    Icons.check_rounded,
-                    size: isVip ? 15 : 13,
-                    color: Colors.white,
-                  )
-                : isVip
-                    ? const Icon(
-                        Icons.chair_outlined,
-                        size: 12,
-                        color: AppColors.tertiary,
-                      )
-                    : null,
+            ? Icon(
+                Icons.check_rounded,
+                size: isVip ? 15 : 13,
+                color: Colors.white,
+              )
+            : isVip
+            ? const Icon(
+                Icons.chair_outlined,
+                size: 12,
+                color: AppColors.tertiary,
+              )
+            : null,
       ),
     );
   }
@@ -432,7 +441,7 @@ class _SeatSelectionScreenState extends State<SeatSelectionScreen> {
                 colors: [Color(0x334D8EFF), Color(0x2247D6FF)],
               ),
               border: Border.all(
-                color: AppColors.tertiary.withOpacity(0.3),
+                color: AppColors.tertiary.withValues(alpha: 0.3),
               ),
             ),
             child: const Icon(
@@ -519,10 +528,12 @@ class _SeatSelectionScreenState extends State<SeatSelectionScreen> {
 
   Widget _buildSummaryBar() {
     final seats = _selected.toList()..sort();
-    final label = seats.isEmpty ? 'No seats chosen' : 'Seats: ${seats.join(', ')}';
+    final label = seats.isEmpty
+        ? 'No seats chosen'
+        : 'Seats: ${seats.join(', ')}';
     return Container(
       decoration: BoxDecoration(
-        color: AppColors.surfaceLowest.withOpacity(0.98),
+        color: AppColors.surfaceLowest.withValues(alpha: 0.98),
         border: const Border(top: BorderSide(color: AppColors.white10)),
         boxShadow: const [
           BoxShadow(
@@ -684,13 +695,13 @@ class _LegendItem extends StatelessWidget {
           width: 14,
           height: 14,
           decoration: BoxDecoration(
-            color: AppColors.surfaceLowest.withOpacity(0.6),
+            color: AppColors.surfaceLowest.withValues(alpha: 0.6),
             borderRadius: BorderRadius.circular(3),
           ),
           child: Icon(
             Icons.close_rounded,
             size: 9,
-            color: AppColors.outline.withOpacity(0.6),
+            color: AppColors.outline.withValues(alpha: 0.6),
           ),
         );
         break;
@@ -703,7 +714,7 @@ class _LegendItem extends StatelessWidget {
             borderRadius: BorderRadius.circular(3),
             boxShadow: [
               BoxShadow(
-                color: AppColors.primaryContainer.withOpacity(0.6),
+                color: AppColors.primaryContainer.withValues(alpha: 0.6),
                 blurRadius: 6,
               ),
             ],
@@ -718,7 +729,9 @@ class _LegendItem extends StatelessWidget {
           decoration: BoxDecoration(
             color: AppColors.surfaceHigh,
             borderRadius: BorderRadius.circular(3),
-            border: Border.all(color: AppColors.tertiary.withOpacity(0.5)),
+            border: Border.all(
+              color: AppColors.tertiary.withValues(alpha: 0.5),
+            ),
           ),
           child: const Icon(
             Icons.star_rounded,
@@ -773,14 +786,14 @@ class _ScreenArc extends StatelessWidget {
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
                 colors: [
-                  AppColors.primaryContainer.withOpacity(0.3),
-                  AppColors.tertiary.withOpacity(0.08),
+                  AppColors.primaryContainer.withValues(alpha: 0.3),
+                  AppColors.tertiary.withValues(alpha: 0.08),
                   Colors.transparent,
                 ],
               ),
               boxShadow: [
                 BoxShadow(
-                  color: AppColors.primaryContainer.withOpacity(0.2),
+                  color: AppColors.primaryContainer.withValues(alpha: 0.2),
                   blurRadius: 30,
                 ),
               ],
@@ -850,4 +863,3 @@ class _ArcPainter extends CustomPainter {
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }
-

@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../state/app_state.dart';
@@ -111,10 +111,8 @@ class ConfirmationScreen extends ConsumerWidget {
   Widget _buildHeader(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: AppColors.surfaceLowest.withOpacity(0.92),
-        border: const Border(
-          bottom: BorderSide(color: AppColors.white06),
-        ),
+        color: AppColors.surfaceLowest.withValues(alpha: 0.92),
+        border: const Border(bottom: BorderSide(color: AppColors.white06)),
       ),
       child: SafeArea(
         bottom: false,
@@ -126,9 +124,8 @@ class ConfirmationScreen extends ConsumerWidget {
               children: [
                 RoundIconButton(
                   icon: Icons.close_rounded,
-                  onTap: () => Navigator.of(context).popUntil(
-                    (route) => route.isFirst,
-                  ),
+                  onTap: () =>
+                      Navigator.of(context).popUntil((route) => route.isFirst),
                 ),
                 const SizedBox(width: 10),
                 Text(
@@ -185,11 +182,13 @@ class ConfirmationScreen extends ConsumerWidget {
             height: 42,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: AppColors.tertiary.withOpacity(0.12),
-              border: Border.all(color: AppColors.tertiary.withOpacity(0.3)),
+              color: AppColors.tertiary.withValues(alpha: 0.12),
+              border: Border.all(
+                color: AppColors.tertiary.withValues(alpha: 0.3),
+              ),
               boxShadow: [
                 BoxShadow(
-                  color: AppColors.tertiary.withOpacity(0.22),
+                  color: AppColors.tertiary.withValues(alpha: 0.22),
                   blurRadius: 16,
                 ),
               ],
@@ -284,9 +283,8 @@ class ConfirmationScreen extends ConsumerWidget {
                   Image.asset(
                     'assets/images/backdrop_dune_ticket.jpg',
                     fit: BoxFit.cover,
-                    errorBuilder: (_, __, ___) => const ColoredBox(
-                      color: AppColors.surfaceHigh,
-                    ),
+                    errorBuilder: (_, __, ___) =>
+                        const ColoredBox(color: AppColors.surfaceHigh),
                   ),
                   const DecoratedBox(
                     decoration: BoxDecoration(
@@ -316,7 +314,9 @@ class ConfirmationScreen extends ConsumerWidget {
                             vertical: 2,
                           ),
                           decoration: BoxDecoration(
-                            color: AppColors.surfaceLowest.withOpacity(0.6),
+                            color: AppColors.surfaceLowest.withValues(
+                              alpha: 0.6,
+                            ),
                             borderRadius: BorderRadius.circular(4),
                           ),
                           child: Text(
@@ -334,7 +334,9 @@ class ConfirmationScreen extends ConsumerWidget {
                             vertical: 2,
                           ),
                           decoration: BoxDecoration(
-                            color: AppColors.surfaceLowest.withOpacity(0.6),
+                            color: AppColors.surfaceLowest.withValues(
+                              alpha: 0.6,
+                            ),
                             borderRadius: BorderRadius.circular(4),
                           ),
                           child: Text(
@@ -352,7 +354,9 @@ class ConfirmationScreen extends ConsumerWidget {
                             vertical: 3,
                           ),
                           decoration: BoxDecoration(
-                            color: AppColors.surfaceLowest.withOpacity(0.65),
+                            color: AppColors.surfaceLowest.withValues(
+                              alpha: 0.65,
+                            ),
                             borderRadius: BorderRadius.circular(4),
                           ),
                           child: Text(
@@ -552,8 +556,10 @@ class ConfirmationScreen extends ConsumerWidget {
             ],
           ),
           const SizedBox(height: 12),
-          _summaryRow('VIP Ultra Recliner (x${booking.seats.length})',
-              '\$${ticketTotal.toStringAsFixed(2)}'),
+          _summaryRow(
+            'VIP Ultra Recliner (x${booking.seats.length})',
+            '\$${ticketTotal.toStringAsFixed(2)}',
+          ),
           _summaryRow('IMAX Experience Fee', '\$3.50'),
           _summaryRow('Taxes & Local Surcharges', '\$2.10'),
           const SizedBox(height: 8),
@@ -658,9 +664,8 @@ class ConfirmationScreen extends ConsumerWidget {
                   child: Image.asset(
                     'assets/images/map.jpg',
                     fit: BoxFit.cover,
-                    errorBuilder: (_, __, ___) => const ColoredBox(
-                      color: AppColors.surfaceHigh,
-                    ),
+                    errorBuilder: (_, __, ___) =>
+                        const ColoredBox(color: AppColors.surfaceHigh),
                   ),
                 ),
                 Positioned(
@@ -672,7 +677,7 @@ class ConfirmationScreen extends ConsumerWidget {
                       vertical: 6,
                     ),
                     decoration: BoxDecoration(
-                      color: AppColors.surfaceLowest.withOpacity(0.85),
+                      color: AppColors.surfaceLowest.withValues(alpha: 0.85),
                       borderRadius: BorderRadius.circular(999),
                       border: Border.all(color: AppColors.white10),
                     ),

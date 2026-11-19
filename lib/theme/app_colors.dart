@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Obsidian Cinema palette — the single source of truth for CineGo colours.
 abstract final class AppColors {
