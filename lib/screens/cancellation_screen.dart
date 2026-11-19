@@ -103,7 +103,7 @@ class _CancellationScreenState extends ConsumerState<CancellationScreen> {
     final booking = widget.booking;
     final seatTotal = booking.seats.length * 29.50;
     final surcharge = booking.format.contains('IMAX') ? 3.50 : 0.0;
-    final taxes = 2.10;
+    const taxes = 2.10;
     final concessions =
         (_baseRefund - seatTotal - surcharge - taxes).clamp(0.0, 999.0);
 

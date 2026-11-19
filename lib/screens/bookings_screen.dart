@@ -190,7 +190,7 @@ class _BookingsScreenState extends ConsumerState<BookingsScreen> {
 
   List<Widget> _buildUpcoming(List<Booking> bookings) {
     if (bookings.isEmpty) {
-      return [_EmptyBookings(label: 'No upcoming bookings yet.')];
+      return [const _EmptyBookings(label: 'No upcoming bookings yet.')];
     }
     return bookings.map((booking) {
       final isPrimary = booking.hasPerk;
@@ -223,7 +223,7 @@ class _BookingsScreenState extends ConsumerState<BookingsScreen> {
 
   List<Widget> _buildPast(List<Booking> bookings) {
     if (bookings.isEmpty) {
-      return [_EmptyBookings(label: 'No past bookings to show.')];
+      return [const _EmptyBookings(label: 'No past bookings to show.')];
     }
     return bookings
         .map(
@@ -420,9 +420,9 @@ class _ActiveTicketCard extends StatelessWidget {
         children: [
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 9),
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: AppColors.surfaceContainer,
-              borderRadius: const BorderRadius.vertical(
+              borderRadius: BorderRadius.vertical(
                 top: Radius.circular(22),
               ),
             ),

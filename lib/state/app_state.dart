@@ -191,8 +191,4 @@ class AppState extends ChangeNotifier {
 
 
 /// Riverpod source of truth for the user's session, cart and bookings.
-final appStateProvider = ChangeNotifierProvider<AppState>((ref) {
-  final state = AppState();
-  ref.onDispose(state.dispose);
-  return state;
-});
+final appStateProvider = ChangeNotifierProvider<AppState>((ref) => AppState());

@@ -164,7 +164,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                     child: Column(
                       children: [
                         if (!isSignIn) ...[
-                          _FieldLabel(
+                          const _FieldLabel(
                             label: 'Full Legal Name',
                             trailing: 'As printed on CinePass',
                           ),
@@ -177,7 +177,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                           ),
                           const SizedBox(height: 12),
                         ],
-                        _FieldLabel(
+                        const _FieldLabel(
                           label: 'Email or CinePass ID',
                           trailing: 'user@vip.cinego',
                         ),

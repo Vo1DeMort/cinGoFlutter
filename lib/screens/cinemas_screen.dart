@@ -444,17 +444,17 @@ class _CinemasScreenState extends ConsumerState<CinemasScreen> {
                   ),
                 ),
                 const SizedBox(height: 8),
-                Wrap(
+                const Wrap(
                   spacing: 5,
                   runSpacing: 5,
                   children: [
-                    const FormatTag('IMAX 70MM LASER', compact: true),
-                    const FormatTag(
+                    FormatTag('IMAX 70MM LASER', compact: true),
+                    FormatTag(
                       'PRIME 30',
                       color: AppColors.secondary,
                       compact: true,
                     ),
-                    const FormatTag(
+                    FormatTag(
                       'DINE-IN LOUNGE',
                       color: AppColors.primary,
                       compact: true,

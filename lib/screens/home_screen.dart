@@ -473,7 +473,7 @@ class _DolbyPromoCard extends StatelessWidget {
       ),
       child: Stack(
         children: [
-          Positioned(
+          const Positioned(
             right: -30,
             top: -40,
             child: GlowOrb(

@@ -637,7 +637,7 @@ class _CheckoutScreenState extends ConsumerState<CheckoutScreen> {
             subtitle: 'Seats ${widget.seats.join(', ')} (\$29.50 each)',
             price: _tickets,
           ),
-          _OrderRow(
+          const _OrderRow(
             title: 'IMAX Laser 70mm Surcharge',
             subtitle: 'Dual 4K Laser Projection',
             price: _formatSurcharge,

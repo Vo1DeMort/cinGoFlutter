@@ -439,7 +439,7 @@ abstract final class MockData {
       formats: [],
       rating: 4.2,
     ),
-    CinemaListing(
+    const CinemaListing(
       name: 'Century San Francisco Centre 9',
       address: '845 Market St, San Francisco',
       distance: '1.8 mi away',

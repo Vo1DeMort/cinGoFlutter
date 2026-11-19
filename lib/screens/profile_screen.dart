@@ -420,11 +420,11 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
           const SizedBox(height: 5),
           ClipRRect(
             borderRadius: BorderRadius.circular(999),
-            child: LinearProgressIndicator(
+            child: const LinearProgressIndicator(
               value: 0.86,
               minHeight: 5,
               backgroundColor: AppColors.surfaceHigh,
-              valueColor: const AlwaysStoppedAnimation(AppColors.tertiary),
+              valueColor: AlwaysStoppedAnimation(AppColors.tertiary),
             ),
           ),
           const SizedBox(height: 3),
@@ -576,12 +576,12 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
             ),
           ),
           const SizedBox(height: 6),
-          Align(
+          const Align(
             alignment: Alignment.centerLeft,
             child: Wrap(
               spacing: 6,
               runSpacing: 6,
-              children: const [
+              children: [
                 FormatTag('IMAX 70MM', compact: true),
                 FormatTag(
                   'DOLBY CINEMA',

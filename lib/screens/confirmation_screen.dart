@@ -414,7 +414,7 @@ class ConfirmationScreen extends ConsumerWidget {
               padding: const EdgeInsets.fromLTRB(14, 4, 14, 12),
               child: Row(
                 children: [
-                  Expanded(
+                  const Expanded(
                     child: _TicketDatum(
                       icon: Icons.calendar_month_rounded,
                       label: 'DATE',

@@ -102,7 +102,7 @@ class _MoviesScreenState extends ConsumerState<MoviesScreen> {
                       ),
                     ),
                     const SizedBox(height: 18),
-                    Text('Refine results', style: AppText.headlineSmall),
+                    const Text('Refine results', style: AppText.headlineSmall),
                     const SizedBox(height: 16),
                     Text(
                       'GENRE',

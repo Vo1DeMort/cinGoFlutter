@@ -638,8 +638,8 @@ class _SnackCard extends StatelessWidget {
                             ),
                           ),
                         if (item.isVegetarian)
-                          _DietTag('VEGETARIAN'),
-                        if (item.isGlutenFree) _DietTag('GLUTEN-FREE'),
+                          const _DietTag('VEGETARIAN'),
+                        if (item.isGlutenFree) const _DietTag('GLUTEN-FREE'),
                         if (item.badge != null &&
                             item.section != 'Auditorium Exclusives')
                           Text(

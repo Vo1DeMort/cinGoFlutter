@@ -84,13 +84,6 @@ class _SeatSelectionScreenState extends State<SeatSelectionScreen> {
   int get _vipCount =>
       _selected.where((seat) => seat.startsWith('E') || seat.startsWith('F')).length;
 
-  String get _priceBreakdown {
-    if (_selected.isEmpty) return '';
-    if (_vipCount == _selected.length) return '(\$29.50 × ${_selected.length})';
-    if (_vipCount == 0) return '(\$24.50 × ${_selected.length})';
-    return '(VIP \$29.50 • Std \$24.50)';
-  }
-
   void _toggleSeat(String seat) {
     setState(() {
       if (_selected.contains(seat)) {

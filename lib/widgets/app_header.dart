@@ -64,10 +64,10 @@ class RootHeader extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Row(
+                          const Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              const Flexible(
+                              Flexible(
                                 child: Text(
                                   'AMC Metreon',
                                   maxLines: 1,
@@ -81,7 +81,7 @@ class RootHeader extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              const Icon(
+                              Icon(
                                 Icons.keyboard_arrow_down_rounded,
                                 size: 15,
                                 color: AppColors.outline,
