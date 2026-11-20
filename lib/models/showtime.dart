@@ -19,11 +19,13 @@ class ShowtimeOption {
     required this.time,
     required this.status,
     this.available = true,
+    this.soldOut = false,
   });
 
   final String time;
   final String status;
   final bool available;
+  final bool soldOut;
 }
 
 class ShowtimeFormat {

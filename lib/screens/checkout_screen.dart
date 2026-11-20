@@ -12,6 +12,7 @@ import '../theme/app_theme.dart';
 import '../widgets/app_header.dart';
 import '../widgets/ui_kit.dart';
 import 'confirmation_screen.dart';
+import 'payment_timeout_screen.dart';
 
 class CheckoutScreen extends ConsumerStatefulWidget {
   const CheckoutScreen({
@@ -19,11 +20,13 @@ class CheckoutScreen extends ConsumerStatefulWidget {
     required this.movie,
     required this.showtime,
     required this.seats,
+    this.holdSeconds = 6 * 60 + 43,
   });
 
   final Movie movie;
   final SelectedShowtime showtime;
   final List<String> seats;
+  final int holdSeconds;
 
   @override
   ConsumerState<CheckoutScreen> createState() => _CheckoutScreenState();
@@ -35,7 +38,8 @@ class _CheckoutScreenState extends ConsumerState<CheckoutScreen> {
   bool _promoOpen = false;
   bool _smsOptIn = true;
   bool _paying = false;
-  int _secondsLeft = 6 * 60 + 43;
+  bool _expired = false;
+  late int _secondsLeft;
   Timer? _timer;
 
   double _promoDiscount = 0;
@@ -49,12 +53,36 @@ class _CheckoutScreenState extends ConsumerState<CheckoutScreen> {
   @override
   void initState() {
     super.initState();
+    _secondsLeft = widget.holdSeconds;
     _timer = Timer.periodic(const Duration(seconds: 1), (_) {
       if (!mounted) return;
-      setState(() {
-        if (_secondsLeft > 0) _secondsLeft--;
-      });
+      if (_secondsLeft > 0) {
+        setState(() => _secondsLeft--);
+        if (_secondsLeft == 0) _expire();
+      } else {
+        _expire();
+      }
     });
+  }
+
+  void _expire() {
+    if (_expired || !mounted) return;
+    _expired = true;
+    _timer?.cancel();
+    final wallet = ref.read(appStateProvider).walletApplied
+        ? _walletCredit
+        : 0.0;
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute<void>(
+        builder: (_) => PaymentTimeoutScreen(
+          movie: widget.movie,
+          showtime: widget.showtime,
+          seats: widget.seats,
+          paymentLabel: _paymentLabel,
+          walletCredit: wallet,
+        ),
+      ),
+    );
   }
 
   @override
@@ -111,7 +139,7 @@ class _CheckoutScreenState extends ConsumerState<CheckoutScreen> {
   }
 
   Future<void> _pay() async {
-    if (_paying) return;
+    if (_paying || _expired) return;
     setState(() => _paying = true);
     await Future<void>.delayed(const Duration(milliseconds: 1100));
     if (!mounted) return;

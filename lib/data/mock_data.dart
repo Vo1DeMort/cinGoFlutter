@@ -285,7 +285,7 @@ abstract final class MockData {
             ShowtimeOption(time: '1:30 PM', status: 'Available'),
             ShowtimeOption(time: '4:45 PM', status: 'Filling Fast'),
             ShowtimeOption(time: '8:15 PM', status: 'Almost Full'),
-            ShowtimeOption(time: '11:30 PM', status: 'Available'),
+            ShowtimeOption(time: '11:30 PM', status: 'Sold Out', soldOut: true),
           ],
         ),
         ShowtimeFormat(

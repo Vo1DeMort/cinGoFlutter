@@ -8,6 +8,7 @@ import '../theme/app_colors.dart';
 import '../theme/app_theme.dart';
 import '../widgets/app_header.dart';
 import '../widgets/ui_kit.dart';
+import 'seat_collision_screen.dart';
 import 'snacks_screen.dart';
 
 class SeatSelectionScreen extends StatefulWidget {
@@ -15,10 +16,14 @@ class SeatSelectionScreen extends StatefulWidget {
     super.key,
     required this.movie,
     required this.showtime,
+    this.initialSeats = const ['E5', 'E6'],
+    this.holdSeconds = 9 * 60 + 40,
   });
 
   final Movie movie;
   final SelectedShowtime showtime;
+  final List<String> initialSeats;
+  final int holdSeconds;
 
   @override
   State<SeatSelectionScreen> createState() => _SeatSelectionScreenState();
@@ -40,21 +45,22 @@ class _SeatSelectionScreenState extends State<SeatSelectionScreen> {
     'E4',
     'E9',
     'E10',
-    'F6',
     'F9',
     'F10',
     'G5',
     'G6',
   };
 
-  final Set<String> _selected = {'E5', 'E6'};
+  final Set<String> _selected = <String>{};
   late int _secondsLeft;
   Timer? _timer;
+  bool _holdLost = false;
 
   @override
   void initState() {
     super.initState();
-    _secondsLeft = 9 * 60 + 40;
+    _selected.addAll(widget.initialSeats);
+    _secondsLeft = widget.holdSeconds;
     _startTimer();
   }
 
@@ -62,14 +68,30 @@ class _SeatSelectionScreenState extends State<SeatSelectionScreen> {
     _timer?.cancel();
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (!mounted) return;
-      setState(() {
-        if (_secondsLeft > 0) {
-          _secondsLeft--;
-        } else {
-          timer.cancel();
-        }
-      });
+      if (_secondsLeft > 0) {
+        setState(() => _secondsLeft--);
+        if (_secondsLeft == 0) _handleHoldLost();
+        return;
+      }
+      timer.cancel();
+      _handleHoldLost();
     });
+  }
+
+  void _handleHoldLost() {
+    if (_holdLost || !mounted) return;
+    _holdLost = true;
+    _timer?.cancel();
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute<void>(
+        builder: (_) => SeatCollisionScreen(
+          movie: widget.movie,
+          showtime: widget.showtime,
+          seats: _selected.toList()..sort(),
+          holdLabel: '00:00',
+        ),
+      ),
+    );
   }
 
   @override

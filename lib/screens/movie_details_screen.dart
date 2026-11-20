@@ -7,6 +7,7 @@ import '../theme/app_colors.dart';
 import '../theme/app_theme.dart';
 import '../widgets/ui_kit.dart';
 import 'seat_selection_screen.dart';
+import 'waitlist_screen.dart';
 
 class MovieDetailsScreen extends StatefulWidget {
   const MovieDetailsScreen({super.key, required this.movie});
@@ -50,6 +51,26 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
         context,
         '${option.time} is unavailable — try another showtime.',
         icon: Icons.event_busy_outlined,
+      );
+      return;
+    }
+    if (option.soldOut) {
+      Navigator.of(context).push(
+        MaterialPageRoute<void>(
+          builder: (_) => WaitlistScreen(
+            movie: widget.movie,
+            showtime: SelectedShowtime(
+              cinema: listing.name,
+              format: format.format,
+              time: option.time,
+              price: format.price,
+              day: _selectedDay == 0 ? 'Today' : 'Fri, Oct 25',
+              auditorium: listing.name.contains('Alamo')
+                  ? 'Theater 4'
+                  : 'Auditorium 1',
+            ),
+          ),
+        ),
       );
       return;
     }
@@ -970,9 +991,11 @@ class _TimeChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final disabled = !option.available;
+    final disabled = !option.available || option.soldOut;
     final statusColor = selected
         ? Colors.white.withValues(alpha: 0.8)
+        : option.soldOut
+        ? AppColors.error
         : option.status == 'Filling Fast'
         ? AppColors.amber
         : option.status == 'Almost Full' || option.status == 'Few Left'
@@ -1013,7 +1036,9 @@ class _TimeChip extends StatelessWidget {
               style: AppText.labelFormat.copyWith(
                 fontSize: 10.5,
                 color: disabled
-                    ? AppColors.outline.withValues(alpha: 0.45)
+                    ? option.soldOut
+                          ? AppColors.error
+                          : AppColors.outline.withValues(alpha: 0.45)
                     : selected
                     ? Colors.white
                     : AppColors.onSurface,
@@ -1027,7 +1052,9 @@ class _TimeChip extends StatelessWidget {
               style: AppText.labelCaps.copyWith(
                 fontSize: 6.5,
                 letterSpacing: 0,
-                color: disabled
+                color: option.soldOut
+                    ? AppColors.error
+                    : disabled
                     ? AppColors.outline.withValues(alpha: 0.4)
                     : statusColor,
               ),

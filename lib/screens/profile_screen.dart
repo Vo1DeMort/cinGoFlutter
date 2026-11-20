@@ -7,6 +7,7 @@ import '../theme/app_theme.dart';
 import '../widgets/app_header.dart';
 import '../widgets/ui_kit.dart';
 import 'auth_screen.dart';
+import 'offline_screen.dart';
 
 class ProfileScreen extends ConsumerStatefulWidget {
   const ProfileScreen({super.key});
@@ -719,6 +720,20 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
             trailing: Switch(
               value: _offlinePasses,
               onChanged: (value) => setState(() => _offlinePasses = value),
+            ),
+          ),
+          const Divider(color: AppColors.white10, height: 1),
+          _settingsRow(
+            icon: Icons.wifi_off_rounded,
+            title: 'Connection & Offline Cache',
+            subtitle: 'Diagnostics, saved passes & venue maps',
+            trailing: const Icon(
+              Icons.chevron_right_rounded,
+              size: 17,
+              color: AppColors.outline,
+            ),
+            onTap: () => Navigator.of(context).push(
+              MaterialPageRoute<void>(builder: (_) => const OfflineScreen()),
             ),
           ),
           const Divider(color: AppColors.white10, height: 1),

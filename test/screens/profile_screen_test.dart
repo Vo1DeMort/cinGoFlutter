@@ -1,4 +1,5 @@
 import 'package:cinego/screens/auth_screen.dart';
+import 'package:cinego/screens/offline_screen.dart';
 import 'package:cinego/screens/profile_screen.dart';
 import 'package:cinego/state/app_state.dart';
 import 'package:material_ui/material_ui.dart';
@@ -36,6 +37,25 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(container.read(appStateProvider).notificationsEnabled, isFalse);
+  });
+
+  testWidgets('opens the offline cache screen from preferences', (
+    tester,
+  ) async {
+    await pumpTab(tester, const ProfileScreen());
+
+    await tester.scrollUntilVisible(
+      find.text('Connection & Offline Cache'),
+      300,
+      scrollable: find.byType(Scrollable).first,
+    );
+    await tester.ensureVisible(find.text('Connection & Offline Cache'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Connection & Offline Cache'));
+    await tester.pumpAndSettle();
+
+    expect(find.byType(OfflineScreen), findsOneWidget);
+    expect(find.text("You're Currently Offline"), findsOneWidget);
   });
 
   testWidgets('opens the auth screen from log out', (tester) async {
